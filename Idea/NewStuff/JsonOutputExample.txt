@@ -1,0 +1,5 @@
+{
+	"ship-name": "xxxx",
+	"planets-visited": xxx,
+	"total-distance": xxx
+}

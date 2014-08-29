@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8">
+<ships>
+	<ship name="xxxx">
+		<activity date="dd/mm/yyyy" crew="xxxx" food-consumed="xxxx" />
+	</ship>
+</ships>
