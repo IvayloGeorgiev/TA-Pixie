@@ -13,15 +13,26 @@
             var connectionString = "mongodb://localhost";
             var client = new MongoClient(connectionString);
             var server = client.GetServer();
-            var database = server.GetDatabase("test");
-            var entities = database.GetCollection<Entity>("entities");
-            Console.WriteLine(entities);
-            var entity = new Entity { Name = "Tom" };
-            entities.Insert(entity);
-            var id = entity.Id; // Insert will set the Id if necessary (as it was in this example)
-            foreach (var item in entities.FindAll())
+            var database = server.GetDatabase("Bunniverse");
+            var bunnies = database.GetCollection<Bunny>("bunnies");
+            var bunny = new Bunny { Name = "IvoBunny" };
+            bunnies.Insert(bunny);
+            var ships = database.GetCollection<Ship>("ships");
+            var ship = new Ship { Name = "Ship1", EnginePower = 5 };
+           
+            foreach (var item in bunnies.FindAll())
             {
-                Console.WriteLine(item.Name);
+                ship.Bunnies.Add(item);
+            }
+            ships.Insert(ship);
+            foreach (var currentShip in ships.FindAll())
+            {
+                Console.WriteLine("Ship --> ");
+                foreach (var currentBunny in ship.Bunnies)
+                {
+                    Console.Write(currentBunny.Name + " ");
+                }
+                Console.WriteLine();
             }
 
         }
