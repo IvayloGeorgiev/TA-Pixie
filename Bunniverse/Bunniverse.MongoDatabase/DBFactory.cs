@@ -183,7 +183,7 @@
             var carrot = new Food { Name = "Carrot" };
             var cabbage = new Food { Name = "Cabbage" };
             var bunny = new Food { Name = "Bunny" };
-            var bunnyPizza = new Food { Name = "BunyPizza" };
+            var bunnyPizza = new Food { Name = "BunnyPizza" };
             var bunnyDuner = new Food { Name = "BunnyDuner" };
             var pork = new Food { Name = "Pork" };
 
