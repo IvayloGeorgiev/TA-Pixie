@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5d165cadffd04565a3685470fbd3159b" Name="Diagram1">
+        <EntityTypeShape EntityType="BunnyverseModel.Bunny" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BunnyverseModel.Cargo" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BunnyverseModel.FoodGathered" Width="1.5" PointX="7.5" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BunnyverseModel.Food" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BunnyverseModel.Meal" Width="1.5" PointX="7.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BunnyverseModel.Planet" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BunnyverseModel.Ship" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BunnyverseModel.sysdiagram" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BunnyverseModel.Visit" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <AssociationConnector Association="BunnyverseModel.FK_Bunnies_Ships" ManuallyRouted="false" />
+        <AssociationConnector Association="BunnyverseModel.FK_Meals_Bunnies" ManuallyRouted="false" />
+        <AssociationConnector Association="BunnyverseModel.FK_Cargo_Foods" ManuallyRouted="false" />
+        <AssociationConnector Association="BunnyverseModel.FK_Cargo_Ships" ManuallyRouted="false" />
+        <AssociationConnector Association="BunnyverseModel.FK_FoodGathered_Foods" ManuallyRouted="false" />
+        <AssociationConnector Association="BunnyverseModel.FK_FoodGathered_Visits" ManuallyRouted="false" />
+        <AssociationConnector Association="BunnyverseModel.FK_Meals_Foods" ManuallyRouted="false" />
+        <AssociationConnector Association="BunnyverseModel.FK_Ships_Planets" ManuallyRouted="false" />
+        <AssociationConnector Association="BunnyverseModel.FK_Visits_Planets" ManuallyRouted="false" />
+        <AssociationConnector Association="BunnyverseModel.FK_Visits_Ships" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

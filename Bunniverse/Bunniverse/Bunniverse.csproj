@@ -32,6 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="EPPlus">
       <HintPath>..\packages\EPPlus.3.1.3.3\lib\net35\EPPlus.dll</HintPath>
     </Reference>
@@ -41,8 +47,15 @@
     <Reference Include="MongoDB.Driver">
       <HintPath>..\packages\mongocsharpdriver.1.9.2\lib\net35\MongoDB.Driver.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,12 +63,76 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BunniverseContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BunniverseContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BunniverseContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BunniverseContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BunniverseContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BunniverseContext.edmx</DependentUpon>
+    </Compile>
     <Compile Include="BunniverseEntryPoint.cs" />
+    <Compile Include="Bunny.cs">
+      <DependentUpon>BunniverseContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cargo.cs">
+      <DependentUpon>BunniverseContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contracts\ISQLJSONConverter.cs" />
+    <Compile Include="Food.cs">
+      <DependentUpon>BunniverseContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FoodGathered.cs">
+      <DependentUpon>BunniverseContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Meal.cs">
+      <DependentUpon>BunniverseContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Planet.cs">
+      <DependentUpon>BunniverseContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ship.cs">
+      <DependentUpon>BunniverseContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShipJSONConverter.cs" />
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>BunniverseContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Visit.cs">
+      <DependentUpon>BunniverseContext.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="BunniverseContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BunniverseContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="BunniverseContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BunniverseContext.edmx</DependentUpon>
+      <LastGenOutput>BunniverseContext.Context.cs</LastGenOutput>
+    </None>
+    <None Include="BunniverseContext.edmx.diagram">
+      <DependentUpon>BunniverseContext.edmx</DependentUpon>
+    </None>
+    <None Include="BunniverseContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BunniverseContext.edmx</DependentUpon>
+      <LastGenOutput>BunniverseContext.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
