@@ -10,10 +10,10 @@
     {
         static void Main(string[] args)
         {
-            var connectionString = "mongodb://localhost";
+            var connectionString = "mongodb://viktor:qwerty@ds063879.mongolab.com:63879/bunniverse";
             var client = new MongoClient(connectionString);
             var server = client.GetServer();
-            var database = server.GetDatabase("Bunniverse");
+            var database = server.GetDatabase("bunniverse");
             var bunnies = database.GetCollection<Bunny>("bunnies");
             IDBFactory DBFactory = new DBFactory();
 

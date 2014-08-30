@@ -12,10 +12,10 @@
     {
         public void CreateBunnies()
         {
-            var connectionString = "mongodb://localhost";
+            var connectionString = "mongodb://viktor:qwerty@ds063879.mongolab.com:63879/bunniverse";
             var client = new MongoClient(connectionString);
             var server = client.GetServer();
-            var database = server.GetDatabase("Bunniverse");
+            var database = server.GetDatabase("bunniverse");
             var bunnies = database.GetCollection<Bunny>("bunnies");
             for (int i = 0; i < 1000; i++)
             {
@@ -27,10 +27,10 @@
 
         public void CreateShips()
         {
-            var connectionString = "mongodb://localhost";
+            var connectionString = "mongodb://viktor:qwerty@ds063879.mongolab.com:63879/bunniverse";
             var client = new MongoClient(connectionString);
             var server = client.GetServer();
-            var database = server.GetDatabase("Bunniverse");
+            var database = server.GetDatabase("bunniverse");
             var ships = database.GetCollection<Ship>("ships");
 
             var viktorShip = new Ship { Name = "ViktorShip", EnginePower = 500000 };
@@ -76,10 +76,10 @@
 
         public void CreateCargos()
         {
-            var connectionString = "mongodb://localhost";
+            var connectionString = "mongodb://viktor:qwerty@ds063879.mongolab.com:63879/bunniverse";
             var client = new MongoClient(connectionString);
             var server = client.GetServer();
-            var database = server.GetDatabase("Bunniverse");
+            var database = server.GetDatabase("bunniverse");
             var cargos = database.GetCollection<Cargo>("cargos");
             var ships = database.GetCollection<Ship>("ships");
             var foods = database.GetCollection<Food>("foods");
@@ -103,10 +103,10 @@
 
         public void CreatePlanets()
         {
-            var connectionString = "mongodb://localhost";
+            var connectionString = "mongodb://viktor:qwerty@ds063879.mongolab.com:63879/bunniverse";
             var client = new MongoClient(connectionString);
             var server = client.GetServer();
-            var database = server.GetDatabase("Bunniverse");
+            var database = server.GetDatabase("bunniverse");
             var planets = database.GetCollection<Planet>("planets");
 
             Random randomNumber = new Random();
@@ -174,10 +174,10 @@
 
         public void CreateFood()
         {
-            var connectionString = "mongodb://localhost";
+            var connectionString = "mongodb://viktor:qwerty@ds063879.mongolab.com:63879/bunniverse";
             var client = new MongoClient(connectionString);
             var server = client.GetServer();
-            var database = server.GetDatabase("Bunniverse");
+            var database = server.GetDatabase("bunniverse");
             var foods = database.GetCollection<Food>("foods");
 
             var carrot = new Food { Name = "Carrot" };
