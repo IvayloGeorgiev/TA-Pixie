@@ -20,7 +20,7 @@
             var bunnyVerse = new BunnyverseEntities();
             var planets = bunnyVerse.Planets.AsQueryable();
             var ships = bunnyVerse.Ships.AsQueryable();
-            var visits = bunnyVerse.Visits.AsQueryable();
+            var visits = bunnyVerse.Visits.AsQueryable().ToList();
             var anonShips = new List<object>();
             anonShips.Add(new { ShipId = 1, PlanetsVisited = 42, DistanceTravelled = 3.14 });
             anonShips.Add(new { ShipId = 2, PlanetsVisited = 9001, DistanceTravelled = 1337.1337 });
