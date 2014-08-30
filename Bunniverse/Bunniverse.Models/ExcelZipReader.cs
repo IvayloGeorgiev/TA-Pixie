@@ -9,18 +9,19 @@
 
     public class ExcelZipReader
     {
-        private const string DestinationPath = "MealsData";
+        private string destinationPath;
         private string sourcePath;        
 
-        public ExcelZipReader(string sourcePath)
+        public ExcelZipReader(string sourcePath, string destinationPath)
         {
             this.sourcePath = sourcePath;
+            this.destinationPath = destinationPath;
         }        
 
-        public void FillFramework()
+        public void ReadExcels()
         {
             UnzipArchive();
-            string[] excelEntries = Directory.GetDirectories(DestinationPath);
+            string[] excelEntries = Directory.GetDirectories(destinationPath);
             foreach (var directory in excelEntries)
             {
                 Console.WriteLine(directory);
@@ -35,12 +36,12 @@
 
         private void UnzipArchive()
         {
-            ZipFile.ExtractToDirectory(sourcePath, DestinationPath);
+            ZipFile.ExtractToDirectory(sourcePath, destinationPath);
         }
 
         private void Cleanup()
         {
-            Directory.Delete(DestinationPath, true);
+            Directory.Delete(destinationPath, true);
         }
 
         private void ReadExcel(string path)
