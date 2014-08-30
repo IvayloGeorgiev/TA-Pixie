@@ -8,6 +8,6 @@ namespace Bunniverse.Contracts
 {
     public interface ISQLJSONConverter
     {
-        void  ConvertToJSON();
+        string ConvertToJSON();
     }
 }
