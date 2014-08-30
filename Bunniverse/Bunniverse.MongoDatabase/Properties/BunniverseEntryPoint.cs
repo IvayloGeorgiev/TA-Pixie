@@ -5,7 +5,7 @@
     using MongoDB.Driver.GridFS;
     using MongoDB.Driver.Linq;
     using System;
-
+    using MongoDatabase.Contracts;
     class BunniverseEntryPoint
     {
         static void Main(string[] args)
@@ -15,24 +15,53 @@
             var server = client.GetServer();
             var database = server.GetDatabase("Bunniverse");
             var bunnies = database.GetCollection<Bunny>("bunnies");
-            var bunny = new Bunny { Name = "IvoBunny" };
-            bunnies.Insert(bunny);
-            var ships = database.GetCollection<Ship>("ships");
-            var ship = new Ship { Name = "Ship1", EnginePower = 5 };
-           
-            foreach (var item in bunnies.FindAll())
+            IDBFactory DBFactory = new DBFactory();
+
+            //DBFactory.CreateBunnies();
+
+            foreach (var bunny in bunnies.FindAll())
             {
-                ship.Bunnies.Add(item);
+                Console.WriteLine(bunny.Name);
             }
-            ships.Insert(ship);
-            foreach (var currentShip in ships.FindAll())
+
+            //DBFactory.CreateShips();
+
+            var ships = database.GetCollection<Ship>("ships");
+
+            foreach (var ship in ships.FindAll())
             {
-                Console.WriteLine("Ship --> ");
-                foreach (var currentBunny in ship.Bunnies)
+                Console.Write(ship.Name + "--> ");
+                foreach (var bunny in ship.Bunnies)
                 {
-                    Console.Write(currentBunny.Name + " ");
+                    Console.Write(bunny.Name + " ");
                 }
-                Console.WriteLine();
+                Console.WriteLine("\n");
+            }
+
+            //DBFactory.CreatePlanets();
+
+            var planets = database.GetCollection<Planet>("planets");
+            foreach (var planet in planets.FindAll())
+            {
+                Console.Write(planet.Name + "--> ");
+                foreach (var ship in planet.Ships)
+                {
+                    Console.Write(ship.Name + " ");
+                }
+                Console.WriteLine("\n");
+            }
+
+            //DBFactory.CreateFood();
+
+            var foods = database.GetCollection<Food>("food");
+
+            //DBFactory.CreateCargos();
+
+            var cargos = database.GetCollection<Cargo>("cargos");
+
+            foreach (var cargo in cargos.FindAll())
+            {
+                Console.WriteLine(cargo.Ship.Name + " --> " + cargo.Food.Name + " : " + cargo.FoodQuantity + "\n");
             }
 
         }

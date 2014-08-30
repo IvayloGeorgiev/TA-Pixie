@@ -4,9 +4,11 @@
     using MongoDB.Bson;
     public class Cargo
     {
-        public ObjectId ShipId { get; set; }
+        public ObjectId Id { get; set; }
 
-        public ObjectId FoodId { get; set; }
+        public Ship Ship { get; set; }
+
+        public Food Food { get; set; }
 
         public int FoodQuantity { get; set; }
 

@@ -49,6 +49,8 @@
   <ItemGroup>
     <Compile Include="Bunny.cs" />
     <Compile Include="Cargo.cs" />
+    <Compile Include="Contracts\IDBFactory.cs" />
+    <Compile Include="DBFactory.cs" />
     <Compile Include="Food.cs" />
     <Compile Include="Planet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

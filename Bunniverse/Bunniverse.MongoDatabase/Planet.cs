@@ -5,15 +5,19 @@
     using System.Collections.Generic;
     public class Planet
     {
+        public Planet()
+        {
+            this.Ships = new HashSet<Ship>();
+        }
         public ObjectId Id { get; set; }
 
         public string Name { get; set; }
 
-        public int X { get; set; }
+        public float X { get; set; }
 
-        public int Y { get; set; }
-        public int Z { get; set; }
+        public float Y { get; set; }
+        public float Z { get; set; }
 
-        ICollection<Ship> Ships { get; set; }
+        public ICollection<Ship> Ships { get; set; }
     }
 }
