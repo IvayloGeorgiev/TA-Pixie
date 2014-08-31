@@ -11,35 +11,21 @@ namespace Bunniverse
 {
     using System;
     using System.Collections.Generic;
-    using System.Runtime.Serialization;
-
-    [DataContract]
+    
     public partial class Visit
     {
         public Visit()
         {
             this.FoodGathereds = new HashSet<FoodGathered>();
         }
-
-        [DataMember]
+    
         public int VisidID { get; set; }
-
-        [DataMember]
         public int PlanetID { get; set; }
-
-        [DataMember]
         public int ShipID { get; set; }
-
-        [DataMember]
         public System.DateTime Date { get; set; }
-
-        [DataMember]
+    
         public virtual ICollection<FoodGathered> FoodGathereds { get; set; }
-
-        [DataMember]
         public virtual Planet Planet { get; set; }
-
-        [DataMember]
         public virtual Ship Ship { get; set; }
     }
 }

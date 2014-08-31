@@ -11,9 +11,7 @@ namespace Bunniverse
 {
     using System;
     using System.Collections.Generic;
-    using System.Runtime.Serialization;
-
-    [DataContract]
+    
     public partial class Ship
     {
         public Ship()
@@ -24,26 +22,13 @@ namespace Bunniverse
         }
     
         public int ShipID { get; set; }
-
-        [DataMember]
         public string ShipName { get; set; }
-
-        [DataMember]
         public double EnginePower { get; set; }
-
-        [DataMember]
         public Nullable<int> CurrentPlanetID { get; set; }
-
-        [DataMember]
+    
         public virtual ICollection<Bunny> Bunnies { get; set; }
-
-        [DataMember]
         public virtual ICollection<Cargo> Cargoes { get; set; }
-
-        [DataMember]
         public virtual Planet Planet { get; set; }
-
-        [DataMember]
         public virtual ICollection<Visit> Visits { get; set; }
     }
 }

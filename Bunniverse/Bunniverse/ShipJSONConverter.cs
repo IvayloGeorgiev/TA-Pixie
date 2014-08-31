@@ -81,6 +81,44 @@
             }
         }
 
+        private static IEnumerable<ShipJSONConverter> GenerateReportData(IEnumerable<Ship> ships)
+        {
+            // TODO: The code hasn't been run. May have errors. Should check if ship.Visits are sorted by VisitID
+            var reportData = new List<object>();
+            foreach (var ship in ships)
+            {
+                double? distanceTravelled = null;
+                int planetsVisited = 0;
+                Planet lastVisited = new Planet();
+                foreach (var visit in ship.Visits)
+                {
+                    if (distanceTravelled == null)
+                    {
+                        distanceTravelled = 0;
+                    }
+                    else
+                    {
+                        double distanceX = Math.Abs(visit.Planet.X - lastVisited.X);
+                        double distanceY = Math.Abs(visit.Planet.Y - lastVisited.Y);
+                        double distanceZ = Math.Abs(visit.Planet.Z - lastVisited.Z);
+                        double distanceIn2D = Math.Sqrt(distanceX * distanceX + distanceY * distanceY);
+                        distanceTravelled += Math.Sqrt(distanceIn2D * distanceIn2D + distanceZ * distanceZ);
+                    }
+
+                    planetsVisited++;
+                    lastVisited = visit.Planet;
+                }
+
+                reportData.Add(new { 
+                    ShipId = ship.ShipID, 
+                    PlanetsVisited = planetsVisited, 
+                    DistanceTravelled = distanceTravelled 
+                });
+            }
+
+            return reportData.Select(ship => new ShipJSONConverter(ship));
+        }
+
         private static MySqlConnection ConnectToDb()
         {
             string connStr = @"server=localhost;userid=root;";
@@ -127,9 +165,9 @@
         /// Generates and saves reports to multitude of JSON files as well as the MySQL database
         /// </summary>
         /// <param name="ships">List of data objects which must have the properties ShipId, PlanetsVisited and DistanceTravelled</param>
-        public static void GenerateReports(IEnumerable<object> ships)
+        public static void GenerateReports(IEnumerable<Ship> ships)
         {
-            var shipReportObjects = ships.Select(ship => new ShipJSONConverter(ship));
+            var shipReportObjects = GenerateReportData(ships);
 
             SaveMySqlReport(shipReportObjects);
 
