@@ -14,7 +14,7 @@
     {
         private const int borderOffset = 3;
 
-        public static void GenerateReports(IEnumerable<Ship> ships, IEnumerable<Planet> planets)
+        public static void GenerateReports()
         {
             // Create a MigraDoc document
             Document document = new Document();
@@ -45,14 +45,41 @@
             var tableData = GetDataTable(columnsCount);
             document.LastSection.Add(tableData);
 
+            var ctx = new BunnyverseEntities();
 
-                foreach (var ship in ships)
+            
+            using (ctx)
+            {
+                var shipsData = ctx.Ships.Select(ship => new
                 {
+                    ShipID = ship.ShipID,
+                    ShipName = ship.ShipName,
+                    CurrentPlanetName = ship.Planet.PlanetName,
+                    X = ship.Planet.X,
+                    Y = ship.Planet.Y,
+                    Z = ship.Planet.Z,
+                    EnginePower = ship.EnginePower,
+                    BunniesCount = ship.Bunnies.Count()
+                });
+
+                var planetsData = ctx.Planets.Select(planet => new
+                {
+                    PlanetID = planet.PlanetID,
+                    PlanetName = planet.PlanetName,
+                    X = planet.X,
+                    Y = planet.Y,
+                    Z = planet.Z
+                }).ToList();
+
+
+            foreach (var shipData in shipsData)
+                {
+                    
                     // Adds space between tables
                     document.LastSection.Add(new Paragraph());
                     // Add Table Title
-                    var bunniesCount = ship.Bunnies.Count();
-                    tableTitle = GetTableTitle(columnsCount, "Ship: "+ship.ShipName + ", bunnies: "+bunniesCount);
+                    var bunniesCount = shipData.BunniesCount;
+                    tableTitle = GetTableTitle(columnsCount, shipData.ShipName.ToUpper() +" at "+ shipData.CurrentPlanetName + ", crew: " + bunniesCount);
                     document.LastSection.Add(tableTitle);
                     // Add Table Headers
                     tableHeaders = GetTableHeader(headers);
@@ -61,24 +88,24 @@
                     tableData = GetDataTable(columnsCount);
                     document.LastSection.Add(tableData);
 
-                    foreach (var planet in planets)
+                    foreach (var planet in planetsData)
                     {
-                        var distance = GetDistance(ship.Planet.X, planet.X, ship.Planet.Y, planet.Y, ship.Planet.Z, planet.Z);
+                        var distance = GetDistance(shipData.X, planet.X, shipData.Y, planet.Y, shipData.Z, planet.Z);
                         if (distance == 0)
                         {
                             continue;
                         }
-                        var timeNeeded = distance / ship.EnginePower;
+                        var timeNeeded = distance / shipData.EnginePower;
                         // Add Tabe Data
                         var rowData = new List<string>()
                                 {
-                                    planet.PlanetName, distance.ToString(), timeNeeded.ToString()
+                                    planet.PlanetName, distance.ToString ("0.00"), timeNeeded.ToString ("0.00")
                                 };
                         Row tableRow = GetTableRow(columnsCount, tableData);
                         AddRowData(rowData, tableRow, false);
                     }
                 }
-
+            }
             try
             {
                 var asrtogationReportName = "..\\..\\PDF-Reports\\AstrogationReport_" + date.ToString("dd_MM_yyyy_HH_mm_ss", CultureInfo.InvariantCulture) + ".pdf";
