@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BunnyverseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BunnyverseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Bunnies">
           <Key>
             <PropertyRef Name="BunnyID" />
           </Key>
-          <Property Name="BunnyID" Type="int" Nullable="false" />
+          <Property Name="BunnyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BunnyName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ShipID" Type="int" Nullable="false" />
         </EntityType>
@@ -35,7 +35,7 @@
           <Key>
             <PropertyRef Name="FoodID" />
           </Key>
-          <Property Name="FoodID" Type="int" Nullable="false" />
+          <Property Name="FoodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FoodName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Meals">
@@ -52,7 +52,7 @@
           <Key>
             <PropertyRef Name="PlanetID" />
           </Key>
-          <Property Name="PlanetID" Type="int" Nullable="false" />
+          <Property Name="PlanetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PlanetName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="X" Type="float" Nullable="false" />
           <Property Name="Y" Type="float" Nullable="false" />
@@ -62,7 +62,7 @@
           <Key>
             <PropertyRef Name="ShipID" />
           </Key>
-          <Property Name="ShipID" Type="int" Nullable="false" />
+          <Property Name="ShipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ShipName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EnginePower" Type="float" Nullable="false" />
           <Property Name="CurrentPlanetID" Type="int" />
@@ -257,8 +257,7 @@
             <End Role="Visits" EntitySet="Visits" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BunnyverseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
