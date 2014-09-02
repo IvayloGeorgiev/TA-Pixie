@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bunniverse.MongoDB
+namespace Bunniverse.Contracts
 {
-    class Program
+    interface IMongoDBToSQLConverter
     {
-        static void Main(string[] args)
-        {
-        }
     }
 }

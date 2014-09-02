@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Bunniverse.MongoDB")]
+[assembly: AssemblyTitle("Bunniverse.Data")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Bunniverse.MongoDB")]
+[assembly: AssemblyProduct("Bunniverse.Data")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("0c2d6631-58bb-420c-a41a-d1fec61578e1")]
+[assembly: Guid("a284970c-aff5-4b13-bac7-6e61c9841797")]
 
 // Version information for an assembly consists of the following four values:
 //

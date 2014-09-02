@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bunniverse", "Bunniverse\Bu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bunniverse.Models", "Bunniverse.Models\Bunniverse.Models.csproj", "{570E9FD8-64A9-4414-9EFB-DA62E7D4AE4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bunniverse.MongoDatabase", "Bunniverse.MongoDatabase\Bunniverse.MongoDatabase.csproj", "{0DCC97C6-8B19-4089-8AE1-7EF330589BE2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bunniverse.Data", "Bunniverse.Data\Bunniverse.Data.csproj", "{17FFDCCE-1439-48CF-961E-3137B873DC6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{570E9FD8-64A9-4414-9EFB-DA62E7D4AE4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{570E9FD8-64A9-4414-9EFB-DA62E7D4AE4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{570E9FD8-64A9-4414-9EFB-DA62E7D4AE4C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0DCC97C6-8B19-4089-8AE1-7EF330589BE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0DCC97C6-8B19-4089-8AE1-7EF330589BE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0DCC97C6-8B19-4089-8AE1-7EF330589BE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0DCC97C6-8B19-4089-8AE1-7EF330589BE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17FFDCCE-1439-48CF-961E-3137B873DC6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17FFDCCE-1439-48CF-961E-3137B873DC6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17FFDCCE-1439-48CF-961E-3137B873DC6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17FFDCCE-1439-48CF-961E-3137B873DC6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

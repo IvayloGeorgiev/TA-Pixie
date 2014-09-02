@@ -9,6 +9,7 @@
     using System.Runtime.Serialization.Json;
     using System.Text;
     using Bunniverse.Contracts;
+    using Bunniverse.Models;
     using MySql.Data.MySqlClient;
 
     /// <summary>

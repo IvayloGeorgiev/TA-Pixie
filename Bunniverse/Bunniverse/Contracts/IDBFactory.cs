@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bunniverse.MongoDatabase.Contracts
+namespace Bunniverse.Contracts
 {
     interface IDBFactory
     {

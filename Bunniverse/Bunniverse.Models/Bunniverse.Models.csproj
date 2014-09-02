@@ -54,17 +54,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bunny.cs" />
+    <Compile Include="Cargo.cs" />
     <Compile Include="ExcelZipReader.cs" />
+    <Compile Include="Food.cs" />
+    <Compile Include="FoodGathered.cs" />
+    <Compile Include="Meal.cs" />
+    <Compile Include="Planet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ship.cs" />
+    <Compile Include="Visit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Bunniverse\Bunniverse.csproj">
-      <Project>{29cd1333-b53b-4e3b-9f9e-594326c3bd3f}</Project>
-      <Name>Bunniverse</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

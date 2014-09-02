@@ -10,6 +10,8 @@
     using MigraDoc.DocumentObjectModel.Tables;
     using MigraDoc.Rendering;
 
+    using Bunniverse.Data;
+
     internal class AstrogationPDFReport
     {
         private const int borderOffset = 3;
@@ -45,7 +47,7 @@
             var tableData = GetDataTable(columnsCount);
             document.LastSection.Add(tableData);
 
-            var ctx = new BunnyverseEntities();
+            var ctx = new BunniverseEntities();
 
 
             using (ctx)

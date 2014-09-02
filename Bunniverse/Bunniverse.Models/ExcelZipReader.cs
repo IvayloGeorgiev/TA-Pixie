@@ -1,13 +1,13 @@
-﻿namespace Bunniverse.Models
+﻿namespace Bunniverse
 {
     using System;
     using System.Data.OleDb;
-    using System.Data;    
+    using System.Data;
     using System.Linq;
     using System.IO;
     using System.IO.Compression;
 
-    using Bunniverse;
+    using Bunniverse.Models;
     using System.Collections.Generic;
 
     public class ExcelZipReader
@@ -21,8 +21,8 @@
         {
             this.sourcePath = sourcePath;
             this.destinationPath = destinationPath;
-            bunnyNameToID = new Dictionary<string,Guid>();
-            foodNameToID = new Dictionary<string,Guid>();
+            bunnyNameToID = new Dictionary<string, Guid>();
+            foodNameToID = new Dictionary<string, Guid>();
             InitializeDicionaries();
         }
 
@@ -31,7 +31,7 @@
         /// </summary>
         public void ReadExcels()
         {
-            this.UnzipArchive();            
+            this.UnzipArchive();
             string[] excelEntries = Directory.GetDirectories(destinationPath);
             foreach (var directory in excelEntries)
             {
@@ -53,23 +53,23 @@
         /// </summary>
         private void InitializeDicionaries()
         {
-            BunnyverseEntities dbContext = new BunnyverseEntities();
-            using (dbContext)
-            {
-                var bunnies = dbContext.Bunnies.ToList();
-                this.bunnyNameToID = new Dictionary<string, Guid>();
-                foreach (var bunny in bunnies)
-                {
-                    this.bunnyNameToID.Add(bunny.BunnyName, bunny.BunnyID);
-                }
+            //BunnyverseEntities dbContext = new BunnyverseEntities();
+            //using (dbContext)
+            //{
+            //    var bunnies = dbContext.Bunnies.ToList();
+            //    this.bunnyNameToID = new Dictionary<string, Guid>();
+            //    foreach (var bunny in bunnies)
+            //    {
+            //        this.bunnyNameToID.Add(bunny.BunnyName, bunny.BunnyID);
+            //    }
 
-                var foods = dbContext.Foods.ToList();
-                this.foodNameToID = new Dictionary<string, Guid>();
-                foreach (var food in foods)
-                {
-                    this.foodNameToID.Add(food.FoodName, food.FoodID);
-                }
-            }
+            //    var foods = dbContext.Foods.ToList();
+            //    this.foodNameToID = new Dictionary<string, Guid>();
+            //    foreach (var food in foods)
+            //    {
+            //        this.foodNameToID.Add(food.FoodName, food.FoodID);
+            //    }
+            //}
         }
 
         /// <summary>
@@ -95,7 +95,7 @@
         /// <returns>A DateTable object with all the data from the excel file.</returns>
         private DataTable ReadExcel(string path)
         {
-            string conString = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR=Yes'", path);            
+            string conString = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR=Yes'", path);
             OleDbConnection excelCon = new OleDbConnection(conString);
             DataTable data = new DataTable();
             OleDbCommand com = new OleDbCommand("Select * FROM [Meals$]", excelCon);
@@ -108,7 +108,7 @@
                 }
             }
 
-            return data;            
+            return data;
         }
 
         /// <summary>
@@ -123,7 +123,7 @@
             while (path[startIndex] != '\\')
             {
                 startIndex--;
-            }            
+            }
             DateTime mealDate = DateTime.Parse(path.Substring(startIndex + 1, lastFolderEnd - startIndex - 1));
             return mealDate;
         }
@@ -135,27 +135,27 @@
         /// <param name="mealDate">The date on which the meal was consumed.</param>
         private void SaveDataToDatabase(DataTable data, DateTime mealDate)
         {
-            BunnyverseEntities dbContext = new BunnyverseEntities();
-            using (dbContext)
-            {               
-                foreach (DataRow row in data.Rows)
-                {
-                    string bunnyName = (string)row[0];
-                    string foodName = (string)row[1];
-                    float quantity = float.Parse((string)row[2]);
+            //BunnyverseEntities dbContext = new BunnyverseEntities();
+            //using (dbContext)
+            //{               
+            //    foreach (DataRow row in data.Rows)
+            //    {
+            //        string bunnyName = (string)row[0];
+            //        string foodName = (string)row[1];
+            //        float quantity = float.Parse((string)row[2]);
 
-                    // Add the meal to the database.
-                    if (this.bunnyNameToID.ContainsKey(bunnyName) && this.foodNameToID.ContainsKey(foodName))
-                    {
-                        var bunnyId = this.bunnyNameToID[bunnyName];
-                        var foodId = this.foodNameToID[foodName];                    
-                        var meal = new Meal() { BunnyID = bunnyId, FoodID = foodId, Date = mealDate, FoodQuantity = quantity };
-                        dbContext.Meals.Add(meal);
-                    }
-                }
+            //        // Add the meal to the database.
+            //        if (this.bunnyNameToID.ContainsKey(bunnyName) && this.foodNameToID.ContainsKey(foodName))
+            //        {
+            //            var bunnyId = this.bunnyNameToID[bunnyName];
+            //            var foodId = this.foodNameToID[foodName];                    
+            //            var meal = new Meal() { BunnyID = bunnyId, FoodID = foodId, Date = mealDate, FoodQuantity = quantity };
+            //            dbContext.Meals.Add(meal);
+            //        }
+            //    }
 
-                dbContext.SaveChanges();
-            }
+            //    dbContext.SaveChanges();
         }
     }
+
 }

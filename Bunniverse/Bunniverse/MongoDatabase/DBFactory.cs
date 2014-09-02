@@ -8,6 +8,7 @@
     using System.Threading.Tasks;
     using Contracts;
     using MongoDB.Driver.Linq;
+    using Bunniverse.Models;
     public class DBFactory : IDBFactory
     {
         public void CreateBunnies()
@@ -17,10 +18,10 @@
             var server = client.GetServer();
             var database = server.GetDatabase("bunniverse");
             var bunnies = database.GetCollection<Bunny>("bunnies");
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 10; i++)
             {
                 string bunnyName = String.Format("IvoBunny" + i);
-                var bunny = new Bunny { Name = bunnyName };
+                var bunny = new Bunny { BunnyName = bunnyName };
                 bunnies.Insert(bunny);
             }
         }
@@ -33,11 +34,11 @@
             var database = server.GetDatabase("bunniverse");
             var ships = database.GetCollection<Ship>("ships");
 
-            var viktorShip = new Ship { Name = "ViktorShip", EnginePower = 500000 };
-            var nikiShip = new Ship { Name = "NikiShip", EnginePower = 500 };
-            var evlogiShip = new Ship { Name = "EvlogiShip", EnginePower = 50 };
-            var ivoShip = new Ship { Name = "IvoShip", EnginePower = 0.1f };
-            var donchoShip = new Ship { Name = "DonchoShip", EnginePower = 0.1f };
+            var viktorShip = new Ship { ShipName = "ViktorShip", EnginePower = 500000 };
+            var nikiShip = new Ship { ShipName = "NikiShip", EnginePower = 500 };
+            var evlogiShip = new Ship { ShipName = "EvlogiShip", EnginePower = 50 };
+            var ivoShip = new Ship { ShipName = "IvoShip", EnginePower = 0.1f };
+            var donchoShip = new Ship { ShipName = "DonchoShip", EnginePower = 0.1f };
 
             var bunnies = database.GetCollection<Bunny>("bunnies");
             int bunnyCounter = 0;
@@ -111,53 +112,52 @@
 
             Random randomNumber = new Random();
 
-            var viktorPlanet = new Planet
-            {
-                Name = "ViktorPlanet",
+            var viktorPlanet = new Planet()
+            {               
+                PlanetName = "ViktorPlanet",
                 X = randomNumber.Next(0, 1000),
                 Y = randomNumber.Next(0, 1000),
                 Z = randomNumber.Next(0, 1000)
             };
 
-            var nikiPlanet = new Planet
+            var nikiPlanet = new Planet()
             {
-                Name = "NikiPlanet",
+                PlanetName = "NikiPlanet",
                 X = randomNumber.Next(0, 1000),
                 Y = randomNumber.Next(0, 1000),
                 Z = randomNumber.Next(0, 1000)
             };
 
-            var evlogiPlanet = new Planet
+            var evlogiPlanet = new Planet()
             {
-                Name = "EvlogiPlanet",
+                PlanetName = "EvlogiPlanet",
                 X = randomNumber.Next(0, 1000),
                 Y = randomNumber.Next(0, 1000),
                 Z = randomNumber.Next(0, 1000)
             };
 
-            var ivoPlanet = new Planet
+            var ivoPlanet = new Planet()
             {
-                Name = "IvoPlanet",
+                PlanetName = "IvoPlanet",
                 X = randomNumber.Next(0, 1000),
                 Y = randomNumber.Next(0, 1000),
                 Z = randomNumber.Next(0, 1000)
             };
 
-            var donchoPlanet = new Planet
+            var donchoPlanet = new Planet()
             {
-                Name = "DonchoPlanet",
+                PlanetName = "DonchoPlanet",
                 X = randomNumber.Next(0, 1000),
                 Y = randomNumber.Next(0, 1000),
                 Z = randomNumber.Next(0, 1000)
             };
 
             var ships = database.GetCollection<Ship>("ships");
-
-            var viktorShip = ships.AsQueryable<Ship>().FirstOrDefault(s => s.Name == "ViktorShip");
-            var nikiShip = ships.AsQueryable<Ship>().FirstOrDefault(s => s.Name == "NikiShip");
-            var evlogiShip = ships.AsQueryable<Ship>().FirstOrDefault(s => s.Name == "EvlogiShip");
-            var ivoShip = ships.AsQueryable<Ship>().FirstOrDefault(s => s.Name == "IvoShip");
-            var donchoShip = ships.AsQueryable<Ship>().FirstOrDefault(s => s.Name == "DonchoShip");
+            var viktorShip = ships.AsQueryable<Ship>().FirstOrDefault(s => s.ShipName == "ViktorShip");
+            var nikiShip = ships.AsQueryable<Ship>().FirstOrDefault(s => s.ShipName == "NikiShip");
+            var evlogiShip = ships.AsQueryable<Ship>().FirstOrDefault(s => s.ShipName == "EvlogiShip");
+            var ivoShip = ships.AsQueryable<Ship>().FirstOrDefault(s => s.ShipName == "IvoShip");
+            var donchoShip = ships.AsQueryable<Ship>().FirstOrDefault(s => s.ShipName == "DonchoShip");
 
             viktorPlanet.Ships.Add(viktorShip);
             nikiPlanet.Ships.Add(nikiShip);
@@ -180,12 +180,12 @@
             var database = server.GetDatabase("bunniverse");
             var foods = database.GetCollection<Food>("foods");
 
-            var carrot = new Food { Name = "Carrot" };
-            var cabbage = new Food { Name = "Cabbage" };
-            var bunny = new Food { Name = "Bunny" };
-            var bunnyPizza = new Food { Name = "BunnyPizza" };
-            var bunnyDuner = new Food { Name = "BunnyDuner" };
-            var pork = new Food { Name = "Pork" };
+            var carrot = new Food() { FoodName = "Carrot" };
+            var cabbage = new Food() { FoodName = "Cabbage" };
+            var bunny = new Food() { FoodName = "Bunny" };
+            var bunnyPizza = new Food() { FoodName = "BunnyPizza" };
+            var bunnyDuner = new Food() { FoodName = "BunnyDuner" };
+            var pork = new Food() { FoodName = "Pork" };
 
             foods.Insert(carrot);
             foods.Insert(cabbage);
