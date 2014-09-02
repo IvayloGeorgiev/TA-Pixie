@@ -15,8 +15,8 @@ namespace Bunniverse
     public partial class Meal
     {
         public int MealID { get; set; }
-        public int BunnyID { get; set; }
-        public int FoodID { get; set; }
+        public System.Guid BunnyID { get; set; }
+        public System.Guid FoodID { get; set; }
         public double FoodQuantity { get; set; }
         public System.DateTime Date { get; set; }
     

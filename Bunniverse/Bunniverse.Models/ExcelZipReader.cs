@@ -14,15 +14,15 @@
     {
         private string destinationPath;
         private string sourcePath;
-        private Dictionary<string, int> bunnyNameToID;
-        private Dictionary<string, int> foodNameToID;
+        private Dictionary<string, Guid> bunnyNameToID;
+        private Dictionary<string, Guid> foodNameToID;
 
         public ExcelZipReader(string sourcePath, string destinationPath)
         {
             this.sourcePath = sourcePath;
             this.destinationPath = destinationPath;
-            bunnyNameToID = new Dictionary<string,int>();
-            foodNameToID = new Dictionary<string,int>();
+            bunnyNameToID = new Dictionary<string,Guid>();
+            foodNameToID = new Dictionary<string,Guid>();
             InitializeDicionaries();
         }
 
@@ -57,14 +57,14 @@
             using (dbContext)
             {
                 var bunnies = dbContext.Bunnies.ToList();
-                this.bunnyNameToID = new Dictionary<string, int>();
+                this.bunnyNameToID = new Dictionary<string, Guid>();
                 foreach (var bunny in bunnies)
                 {
                     this.bunnyNameToID.Add(bunny.BunnyName, bunny.BunnyID);
                 }
 
                 var foods = dbContext.Foods.ToList();
-                this.foodNameToID = new Dictionary<string, int>();
+                this.foodNameToID = new Dictionary<string, Guid>();
                 foreach (var food in foods)
                 {
                     this.foodNameToID.Add(food.FoodName, food.FoodID);

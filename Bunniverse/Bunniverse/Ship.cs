@@ -21,10 +21,10 @@ namespace Bunniverse
             this.Visits = new HashSet<Visit>();
         }
     
-        public int ShipID { get; set; }
+        public System.Guid ShipID { get; set; }
         public string ShipName { get; set; }
         public double EnginePower { get; set; }
-        public Nullable<int> CurrentPlanetID { get; set; }
+        public Nullable<System.Guid> CurrentPlanetID { get; set; }
     
         public virtual ICollection<Bunny> Bunnies { get; set; }
         public virtual ICollection<Cargo> Cargoes { get; set; }

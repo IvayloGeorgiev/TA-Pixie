@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5d165cadffd04565a3685470fbd3159b" Name="Diagram1">
+      <Diagram DiagramId="e8428df6285f4478a2d678f3226f3acd" Name="Diagram1">
         <EntityTypeShape EntityType="BunnyverseModel.Bunny" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BunnyverseModel.Cargo" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BunnyverseModel.FoodGathered" Width="1.5" PointX="7.5" PointY="7.75" IsExpanded="true" />

@@ -20,7 +20,7 @@ namespace Bunniverse
             this.Visits = new HashSet<Visit>();
         }
     
-        public int PlanetID { get; set; }
+        public System.Guid PlanetID { get; set; }
         public string PlanetName { get; set; }
         public double X { get; set; }
         public double Y { get; set; }

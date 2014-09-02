@@ -19,9 +19,9 @@ namespace Bunniverse
             this.FoodGathereds = new HashSet<FoodGathered>();
         }
     
-        public int VisidID { get; set; }
-        public int PlanetID { get; set; }
-        public int ShipID { get; set; }
+        public System.Guid VisidID { get; set; }
+        public System.Guid PlanetID { get; set; }
+        public System.Guid ShipID { get; set; }
         public System.DateTime Date { get; set; }
     
         public virtual ICollection<FoodGathered> FoodGathereds { get; set; }

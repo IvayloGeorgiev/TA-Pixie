@@ -84,73 +84,73 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AstrogationPDFReport.cs" />
-    <Compile Include="BunniverseContext.Context.cs">
+    <Compile Include="BunnieverseModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BunniverseContext.Context.tt</DependentUpon>
+      <DependentUpon>BunnieverseModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="BunniverseContext.cs">
+    <Compile Include="BunnieverseModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BunniverseContext.tt</DependentUpon>
+      <DependentUpon>BunnieverseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BunniverseContext.Designer.cs">
+    <Compile Include="BunnieverseModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BunniverseContext.edmx</DependentUpon>
+      <DependentUpon>BunnieverseModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="BunniverseEntryPoint.cs" />
     <Compile Include="Bunny.cs">
-      <DependentUpon>BunniverseContext.tt</DependentUpon>
+      <DependentUpon>BunnieverseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Cargo.cs">
-      <DependentUpon>BunniverseContext.tt</DependentUpon>
+      <DependentUpon>BunnieverseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Contracts\ISQLJSONConverter.cs" />
     <Compile Include="Food.cs">
-      <DependentUpon>BunniverseContext.tt</DependentUpon>
+      <DependentUpon>BunnieverseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="FoodGathered.cs">
-      <DependentUpon>BunniverseContext.tt</DependentUpon>
+      <DependentUpon>BunnieverseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Meal.cs">
-      <DependentUpon>BunniverseContext.tt</DependentUpon>
+      <DependentUpon>BunnieverseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Planet.cs">
-      <DependentUpon>BunniverseContext.tt</DependentUpon>
+      <DependentUpon>BunnieverseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ship.cs">
-      <DependentUpon>BunniverseContext.tt</DependentUpon>
+      <DependentUpon>BunnieverseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ShipJSONConverter.cs" />
     <Compile Include="sysdiagram.cs">
-      <DependentUpon>BunniverseContext.tt</DependentUpon>
+      <DependentUpon>BunnieverseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Visit.cs">
-      <DependentUpon>BunniverseContext.tt</DependentUpon>
+      <DependentUpon>BunnieverseModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <EntityDeploy Include="BunniverseContext.edmx">
+    <EntityDeploy Include="BunnieverseModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BunniverseContext.Designer.cs</LastGenOutput>
+      <LastGenOutput>BunnieverseModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="BunniverseContext.Context.tt">
+    <None Include="BunnieverseModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BunniverseContext.edmx</DependentUpon>
-      <LastGenOutput>BunniverseContext.Context.cs</LastGenOutput>
+      <DependentUpon>BunnieverseModel.edmx</DependentUpon>
+      <LastGenOutput>BunnieverseModel.Context.cs</LastGenOutput>
     </None>
-    <None Include="BunniverseContext.edmx.diagram">
-      <DependentUpon>BunniverseContext.edmx</DependentUpon>
+    <None Include="BunnieverseModel.edmx.diagram">
+      <DependentUpon>BunnieverseModel.edmx</DependentUpon>
     </None>
-    <None Include="BunniverseContext.tt">
+    <None Include="BunnieverseModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BunniverseContext.edmx</DependentUpon>
-      <LastGenOutput>BunniverseContext.cs</LastGenOutput>
+      <DependentUpon>BunnieverseModel.edmx</DependentUpon>
+      <LastGenOutput>BunnieverseModel.cs</LastGenOutput>
     </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>

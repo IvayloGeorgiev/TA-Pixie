@@ -21,7 +21,7 @@ namespace Bunniverse
             this.Meals = new HashSet<Meal>();
         }
     
-        public int FoodID { get; set; }
+        public System.Guid FoodID { get; set; }
         public string FoodName { get; set; }
     
         public virtual ICollection<Cargo> Cargoes { get; set; }

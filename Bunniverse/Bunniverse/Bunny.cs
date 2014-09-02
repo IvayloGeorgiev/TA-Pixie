@@ -19,9 +19,9 @@ namespace Bunniverse
             this.Meals = new HashSet<Meal>();
         }
     
-        public int BunnyID { get; set; }
+        public System.Guid BunnyID { get; set; }
         public string BunnyName { get; set; }
-        public int ShipID { get; set; }
+        public System.Guid ShipID { get; set; }
     
         public virtual Ship Ship { get; set; }
         public virtual ICollection<Meal> Meals { get; set; }

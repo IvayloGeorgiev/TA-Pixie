@@ -14,8 +14,8 @@ namespace Bunniverse
     
     public partial class Cargo
     {
-        public int ShipID { get; set; }
-        public int FoodID { get; set; }
+        public System.Guid ShipID { get; set; }
+        public System.Guid FoodID { get; set; }
         public double FoodQuantity { get; set; }
     
         public virtual Food Food { get; set; }

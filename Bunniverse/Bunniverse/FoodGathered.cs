@@ -14,8 +14,8 @@ namespace Bunniverse
     
     public partial class FoodGathered
     {
-        public int FoodID { get; set; }
-        public int VisitID { get; set; }
+        public System.Guid FoodID { get; set; }
+        public System.Guid VisitID { get; set; }
         public double Quantity { get; set; }
     
         public virtual Food Food { get; set; }
