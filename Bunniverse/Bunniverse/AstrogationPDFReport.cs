@@ -82,8 +82,10 @@
                      }
                     ),
                     FoodPerDay = ctx.Meals.Join(
-                       ship.Bunnies, meal => meal.BunnyID, bunny => bunny.BunnyID, (meal, bunny) => meal
-                    ).GroupBy(b => b.Date).Select(g => new { Quantity = g.Sum(x => x.FoodQuantity) }).FirstOrDefault(),
+                       ship.Bunnies, meal => meal.BunnyID, bunny => bunny.BunnyID, (meal, bunny) => meal)
+                       .GroupBy(b => b.Date)
+                       .Select(g => g.Sum(x => x.FoodQuantity))
+                       .FirstOrDefault(),
                     FoodInCargo = ship.Cargoes.Sum(x => x.FoodQuantity)
                 });
 
@@ -97,7 +99,7 @@
                     tableTitle = GetTableTitle(columnsCount, shipData.ShipName.ToUpper()
                         + "\n at " + shipData.CurrentPlanetName
                         + ", crew: " + bunniesCount
-                        + ", food per day: " + shipData.FoodPerDay.Quantity
+                        + ", food per day: " + shipData.FoodPerDay
                         + ", food in cargo: " + shipData.FoodInCargo);
                     document.LastSection.Add(tableTitle);
                     // Add Table Headers
@@ -117,7 +119,7 @@
                             continue;
                         }
                         var timeNeeded = distance / shipData.EnginePower;
-                        var foodNeeded = timeNeeded * shipData.FoodPerDay.Quantity;
+                        var foodNeeded = timeNeeded * shipData.FoodPerDay;
                         var reachable = (shipData.FoodInCargo / foodNeeded) * 100;// %
                         // Add Tabe Data
                         var rowData = new List<string>()
