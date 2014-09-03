@@ -21,8 +21,8 @@
     {
         static void Main(string[] args)
         {
-            var dbFactory = new BunniverseFactory();
-            dbFactory.GenerateMongoData();
+            //var dbFactory = new BunniverseFactory();
+            //dbFactory.GenerateMongoData();
 
             IMongoDBToSQLConverter sqlConverter = new MongoDBToSQLConverter();
             sqlConverter.ConvertMongoToSQL();

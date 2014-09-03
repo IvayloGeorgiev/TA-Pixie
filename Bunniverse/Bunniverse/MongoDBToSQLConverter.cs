@@ -19,21 +19,55 @@ namespace Bunniverse
             var client = new MongoClient(connectionString);
             var server = client.GetServer();
             var database = server.GetDatabase("bunniverse");
-            var bunnies = database.GetCollection<Bunny>("bunnies");
             IDBFactory DBFactory = new DBFactory();
 
-            //DBFactory.CreateBunnies();
             using (var bunniverseSQL = new BunniverseEntities())
             {
-                foreach (var bunny in bunnies.FindAll())
+                var planets = database.GetCollection<Planet>("planets");
+
+                foreach (var planet in planets.FindAll())
                 {
-                    bunniverseSQL.Bunnies.Add(bunny);
+                    bunniverseSQL.Planets.Add(planet);
                 }
-                Console.WriteLine(bunniverseSQL.Bunnies.ToList().Count);
-                foreach (var item in bunniverseSQL.Bunnies)
+
+                bunniverseSQL.SaveChanges();
+
+                var foods = database.GetCollection<Food>("foods");
+
+                foreach (var food in foods.FindAll())
                 {
-                    Console.WriteLine(item.BunnyName);
+                    bunniverseSQL.Foods.Add(food);
                 }
+
+                bunniverseSQL.SaveChanges();
+
+
+                var ships = database.GetCollection<Ship>("ships");
+
+                foreach (var ship in ships.FindAll())
+                {
+                    bunniverseSQL.Ships.Add(ship);
+                }
+
+                bunniverseSQL.SaveChanges();
+
+
+               var bunnies = database.GetCollection<Bunny>("bunnies");
+
+               foreach (var bunny in bunnies.FindAll())
+               {
+                   bunniverseSQL.Bunnies.Add(bunny);
+               }
+
+                bunniverseSQL.SaveChanges();
+
+                var cargos = database.GetCollection<Cargo>("cargos");
+
+                foreach (var cargo in cargos.FindAll())
+                {
+                    bunniverseSQL.Cargoes.Add(cargo);
+                }
+
                 bunniverseSQL.SaveChanges();
             }
 

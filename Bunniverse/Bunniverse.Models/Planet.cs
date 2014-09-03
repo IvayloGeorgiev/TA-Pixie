@@ -6,16 +6,16 @@
     using MongoDB.Bson.Serialization.Attributes;
     public class Planet
     {
+        private ICollection<Ship> ships;
         public Planet()
         {
-            this.Ships = new HashSet<Ship>();
+            this.ships = new HashSet<Ship>();
             this.Visits = new HashSet<Visit>();
-            this.PlanetId = Guid.NewGuid();
-            this.PlanetName = "";
+          //  this.PlanetId = Guid.NewGuid();
         }
 
         [BsonId]
-        public Guid PlanetId { get; set; }
+        public int PlanetId { get; set; }
 
         public string PlanetName { get; set; }
 
@@ -25,7 +25,11 @@
 
         public double Z { get; set; }
 
-        public virtual ICollection<Ship> Ships { get; set; }
+        public virtual ICollection<Ship> Ships
+        {
+            get { return this.ships; }
+            set { this.ships = value; }
+        }
 
         public virtual ICollection<Visit> Visits { get; set; }
     }

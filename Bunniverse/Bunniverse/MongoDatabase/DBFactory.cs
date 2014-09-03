@@ -21,7 +21,7 @@
             for (int i = 0; i < 1000; i++)
             {
                 string bunnyName = String.Format("IvoBunny" + i);
-                var bunny = new Bunny { BunnyName = bunnyName };
+                var bunny = new Bunny { BunnyName = bunnyName,BunnyId = i };
                 bunnies.Insert(bunny);
             }
         }
@@ -34,11 +34,11 @@
             var database = server.GetDatabase("bunniverse");
             var ships = database.GetCollection<Ship>("ships");
 
-            var viktorShip = new Ship { ShipName = "ViktorShip", EnginePower = 500000 };
-            var nikiShip = new Ship { ShipName = "NikiShip", EnginePower = 500 };
-            var evlogiShip = new Ship { ShipName = "EvlogiShip", EnginePower = 50 };
-            var ivoShip = new Ship { ShipName = "IvoShip", EnginePower = 0.1f };
-            var donchoShip = new Ship { ShipName = "DonchoShip", EnginePower = 0.1f };
+            var viktorShip = new Ship { ShipName = "ViktorShip", EnginePower = 500000,ShipId=0 };
+            var nikiShip = new Ship { ShipName = "NikiShip", EnginePower = 500, ShipId = 1 };
+            var evlogiShip = new Ship { ShipName = "EvlogiShip", EnginePower = 50, ShipId = 2};
+            var ivoShip = new Ship { ShipName = "IvoShip", EnginePower = 0.1f, ShipId = 3 };
+            var donchoShip = new Ship { ShipName = "DonchoShip", EnginePower = 0.1f, ShipId = 4 };
 
             var bunnies = database.GetCollection<Bunny>("bunnies");
             int bunnyCounter = 0;
@@ -48,7 +48,7 @@
                 if (bunnyCounter < 200)
                 {
                     viktorShip.Bunnies.Add(bunny);
-                    bunny.Ship = viktorShip;
+                    //bunny.Ship = viktorShip;
                    // bunny.ShipId = viktorShip.ShipId;
                 }
                 else if (bunnyCounter < 400)
@@ -95,7 +95,7 @@
             var ships = database.GetCollection<Ship>("ships");
             var foods = database.GetCollection<Food>("foods");
             Random randomNumber = new Random();
-
+            int idCounter =1;
             foreach (var ship in ships.FindAll())
             {
                 foreach (var food in foods.FindAll())
@@ -104,10 +104,12 @@
                     {
                         Ship = ship,
                         Food = food,
-                        FoodQuantity = randomNumber.Next(1, 100)
+                        FoodQuantity = randomNumber.Next(1, 100),
+                        CargoId= idCounter
                     };
 
                     cargos.Insert(cargo);
+                    idCounter++;
                 }
             }
         }
@@ -127,7 +129,8 @@
                 PlanetName = "ViktorPlanet",
                 X = randomNumber.Next(0, 1000),
                 Y = randomNumber.Next(0, 1000),
-                Z = randomNumber.Next(0, 1000)
+                Z = randomNumber.Next(0, 1000),
+                PlanetId=1
             };
 
             var nikiPlanet = new Planet()
@@ -135,7 +138,8 @@
                 PlanetName = "NikiPlanet",
                 X = randomNumber.Next(0, 1000),
                 Y = randomNumber.Next(0, 1000),
-                Z = randomNumber.Next(0, 1000)
+                Z = randomNumber.Next(0, 1000),
+                PlanetId=2
             };
 
             var evlogiPlanet = new Planet()
@@ -143,7 +147,8 @@
                 PlanetName = "EvlogiPlanet",
                 X = randomNumber.Next(0, 1000),
                 Y = randomNumber.Next(0, 1000),
-                Z = randomNumber.Next(0, 1000)
+                Z = randomNumber.Next(0, 1000),
+                PlanetId = 3
             };
 
             var ivoPlanet = new Planet()
@@ -151,7 +156,8 @@
                 PlanetName = "IvoPlanet",
                 X = randomNumber.Next(0, 1000),
                 Y = randomNumber.Next(0, 1000),
-                Z = randomNumber.Next(0, 1000)
+                Z = randomNumber.Next(0, 1000),
+                PlanetId = 4
             };
 
             var donchoPlanet = new Planet()
@@ -159,7 +165,8 @@
                 PlanetName = "DonchoPlanet",
                 X = randomNumber.Next(0, 1000),
                 Y = randomNumber.Next(0, 1000),
-                Z = randomNumber.Next(0, 1000)
+                Z = randomNumber.Next(0, 1000),
+                PlanetId = 5
             };
 
             var ships = database.GetCollection<Ship>("ships");
@@ -190,12 +197,12 @@
             var database = server.GetDatabase("bunniverse");
             var foods = database.GetCollection<Food>("foods");
 
-            var carrot = new Food() { FoodName = "Carrot" };
-            var cabbage = new Food() { FoodName = "Cabbage" };
-            var bunny = new Food() { FoodName = "Bunny" };
-            var bunnyPizza = new Food() { FoodName = "BunnyPizza" };
-            var bunnyDuner = new Food() { FoodName = "BunnyDuner" };
-            var pork = new Food() { FoodName = "Pork" };
+            var carrot = new Food() { FoodName = "Carrot",FoodId=1 };
+            var cabbage = new Food() { FoodName = "Cabbage", FoodId = 2 };
+            var bunny = new Food() { FoodName = "Bunny", FoodId = 3 };
+            var bunnyPizza = new Food() { FoodName = "BunnyPizza", FoodId= 4 };
+            var bunnyDuner = new Food() { FoodName = "BunnyDuner", FoodId = 5 };
+            var pork = new Food() { FoodName = "Pork", FoodId = 6 };
 
             foods.Insert(carrot);
             foods.Insert(cabbage);

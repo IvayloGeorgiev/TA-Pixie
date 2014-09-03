@@ -11,17 +11,17 @@
             this.Bunnies = new HashSet<Bunny>();
             this.Cargoes = new HashSet<Cargo>();
             this.Visits = new HashSet<Visit>();
-            this.ShipId = Guid.NewGuid();
+         //   this.ShipId = Guid.NewGuid();
         }
 
         [BsonId]
-        public Guid ShipId { get; set; }
+        public int ShipId { get; set; }
 
         public string ShipName { get; set; }
 
         public double EnginePower { get; set; }
 
-      //  public Guid PlanetId { get; set; }
+       // public int PlanetId { get; set; }
 
         public virtual ICollection<Bunny> Bunnies { get; set; }
 
