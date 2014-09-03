@@ -49,7 +49,7 @@
 
                         var currentDistance = Math.Sqrt((absX * absX) + (absY * absY) + (absZ * absZ));
 
-                        totalDistance += currentDistance;
+                        totalDistance += (float)currentDistance;
 			        }
 
                     var shipTravel = new ShipsTravel()

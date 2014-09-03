@@ -8,7 +8,8 @@
     {
         [BsonId]
         public int CargoId { get; set; }
-
+        public int ShipId { get; set; }
+        public int FoodId { get; set; }
         public virtual Ship Ship { get; set; }
 
         public virtual Food Food { get; set; }

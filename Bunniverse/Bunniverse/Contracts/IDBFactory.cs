@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bunniverse.Models;
+using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +10,13 @@ namespace Bunniverse.Contracts
 {
     interface IDBFactory
     {
-        void CreateBunnies();
+        void CreateBunnies(Ship ship, MongoClient client);
 
-        void CreateShips();
+        void CreateShips(Planet planet, MongoClient client);
 
         void CreateCargos();
 
-        void CreatePlanets();
+        void CreatePlanets(MongoClient client);
 
         void CreateFood();
     }

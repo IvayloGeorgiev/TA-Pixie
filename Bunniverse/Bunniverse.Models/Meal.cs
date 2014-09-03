@@ -12,9 +12,9 @@ namespace Bunniverse.Models
         [BsonId]
         public int MealId { get; set; }
 
-       // public int BunnyId { get; set; }
+        public int BunnyId { get; set; }
 
-      //  public int FoodId { get; set; }
+        public int FoodId { get; set; }
 
         public double FoodQuantity { get; set; }
 

@@ -10,11 +10,12 @@
     using Bunniverse.MongoDatabase;
     class BunniverseFactory
     {
+        public const string connectionString = "mongodb://viktor:qwerty@ds063879.mongolab.com:63879/bunniverse";
         public void GenerateMongoData()
         {
-            var connectionString = "mongodb://viktor:qwerty@ds063879.mongolab.com:63879/bunniverse";
+
             var client = new MongoClient(connectionString);
-            var server = client.GetServer();         
+            var server = client.GetServer();
             var database = server.GetDatabase("bunniverse");
 
             database.DropCollection("bunnies");
@@ -23,56 +24,36 @@
             database.DropCollection("foods");
             database.DropCollection("cargos");
 
-            var bunnies = database.GetCollection<Bunny>("bunnies");
             IDBFactory DBFactory = new DBFactory();
+            DBFactory.CreatePlanets(client);
 
-            DBFactory.CreateBunnies();
 
-            foreach (var bunny in bunnies.FindAll())
-            {
-                Console.WriteLine(bunny.BunnyName);
-            }
+            Random randomNumber = new Random();
 
-            DBFactory.CreateShips();
-
-            var ships = database.GetCollection<Ship>("ships");
-
-            foreach (var ship in ships.FindAll())
-            {
-                Console.Write(ship.ShipName + "--> ");
-                foreach (var bunny in ship.Bunnies)
-                {
-                    Console.Write(bunny.BunnyName + " ");
-                }
-                Console.WriteLine("\n");
-            }
-
-            DBFactory.CreatePlanets();
-          
             var planets = database.GetCollection<Planet>("planets");
             foreach (var planet in planets.FindAll())
             {
-                Console.Write(planet.PlanetName + "--> ");
-                foreach (var ship in planet.Ships)
-                {
-                    Console.Write(ship.ShipName + " ");
-                }
+                Console.Write("new Planet: " + planet.PlanetName);
                 Console.WriteLine("\n");
+
+                DBFactory.CreateShips(planet, client);
             }
+
 
             DBFactory.CreateFood();
 
-            var foods = database.GetCollection<Food>("foods");
+            //var foods = database.GetCollection<Food>("foods");
 
             DBFactory.CreateCargos();
 
-            var cargos = database.GetCollection<Cargo>("cargos");
+            //var cargos = database.GetCollection<Cargo>("cargos");
 
-            foreach (var cargo in cargos.FindAll())
-            {
-                Console.WriteLine(cargo.Ship.ShipName + " --> " + cargo.Food.FoodName + " : " + cargo.FoodQuantity + "\n");
-            }
+            //foreach (var cargo in cargos.FindAll())
+            //{
+            //    //Console.WriteLine(cargo.Ship.ShipName + " --> " + cargo.Food.FoodName + " : " + cargo.FoodQuantity + "\n");
+            //}
 
         }
+
     }
 }

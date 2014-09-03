@@ -10,7 +10,7 @@
         [BsonId]
         public int BunnyId { get; set; }
         public string BunnyName { get; set; }
-       // public int ShipId { get; set; }
+        public int ShipId { get; set; }
 
         public virtual Ship Ship { get; set; }
 
