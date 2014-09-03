@@ -9,12 +9,12 @@
     {
         public Bunny()
         {
-            this.BunnyID = Guid.NewGuid();
+            this.BunnyId = Guid.NewGuid();
         }
         [BsonId]
-        public Guid BunnyID { get; set; }
+        public Guid BunnyId { get; set; }
         public string BunnyName { get; set; }
-        public Guid ShipID { get; set; }
+        //public Guid? ShipId { get; set; }
 
         public virtual Ship Ship { get; set; }
 

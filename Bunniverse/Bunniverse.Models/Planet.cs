@@ -10,12 +10,12 @@
         {
             this.Ships = new HashSet<Ship>();
             this.Visits = new HashSet<Visit>();
-            this.PlanetID = Guid.NewGuid();
+            this.PlanetId = Guid.NewGuid();
             this.PlanetName = "";
         }
 
         [BsonId]
-        public Guid PlanetID { get; set; }
+        public Guid PlanetId { get; set; }
 
         public string PlanetName { get; set; }
 

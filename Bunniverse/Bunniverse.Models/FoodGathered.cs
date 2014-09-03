@@ -17,7 +17,7 @@ namespace Bunniverse.Models
         [BsonId]
         public Guid FoodGatheredId { get; set; }
 
-        public Guid FoodID { get; set; }
+        public Guid FoodId { get; set; }
 
         public int VisitID { get; set; }
 

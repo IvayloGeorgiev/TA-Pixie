@@ -111,7 +111,7 @@
                 }
 
                 reportData.Add(new { 
-                    ShipId = ship.ShipID, 
+                    ShipId = ship.ShipId, 
                     PlanetsVisited = planetsVisited, 
                     DistanceTravelled = distanceTravelled 
                 });

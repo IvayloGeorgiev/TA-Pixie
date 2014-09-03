@@ -5,11 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bunniverse.Models;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Bunniverse.Data
 {
     public class BunniverseEntities : DbContext
     {
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
+        }
+
         public virtual DbSet<Bunny> Bunnies { get; set; }
         public virtual DbSet<Cargo> Cargoes { get; set; }
         public virtual DbSet<FoodGathered> FoodGathereds { get; set; }

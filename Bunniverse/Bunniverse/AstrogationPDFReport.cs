@@ -67,7 +67,7 @@
 
                 var shipsData = ctx.Ships.Select(ship => new
                 {
-                    ShipID = ship.ShipID,
+                    ShipID = ship.ShipId,
                     ShipName = ship.ShipName,
                     CurrentPlanetName = ship.Planet.PlanetName,
                     X = ship.Planet.X,
@@ -76,15 +76,15 @@
                     EnginePower = ship.EnginePower,
                     BunniesCount = ship.Bunnies.Count(),
                     Planets = ctx.Planets.Join(
-                     ctx.Ships, (p => p.PlanetID), s => s.ShipID, (p, s) => new
+                     ctx.Ships, (p => p.PlanetId), s => s.ShipId, (p, s) => new
                      {
-                         PlanetID = p.PlanetID,
+                         PlanetID = p.PlanetId,
                          PlanetName = p.PlanetName,
                          Distance = Math.Pow(((p.X - ship.Planet.X) * (p.X - ship.Planet.X) + (p.Y - ship.Planet.Y) * (p.Y - ship.Planet.Y) + (p.Z - ship.Planet.Z) * (p.Z - ship.Planet.Z)), 0.5)
                      }
                     ),
                     FoodPerDay = ctx.Meals.Join(
-                       ship.Bunnies, meal => meal.BunnyID, bunny => bunny.BunnyID, (meal, bunny) => meal)
+                       ship.Bunnies, meal => meal.Bunny.BunnyId, bunny => bunny.BunnyId, (meal, bunny) => meal)
                        .GroupBy(b => b.Date)
                        .Select(g => g.Sum(x => x.FoodQuantity))
                        .FirstOrDefault(),

@@ -21,27 +21,13 @@
     {
         static void Main(string[] args)
         {
-           // BsonClassMap.RegisterClassMap<Bunny>();
             var dbFactory = new BunniverseFactory();
             dbFactory.GenerateMongoData();
-           var connectionString = "mongodb://viktor:qwerty@ds063879.mongolab.com:63879/bunniverse";
-           var client = new MongoClient(connectionString);
-           var server = client.GetServer();
-           var database = server.GetDatabase("bunniverse");
 
-           var bunnies = database.GetCollection<Bunny>("bunnies");
+            IMongoDBToSQLConverter sqlConverter = new MongoDBToSQLConverter();
+            sqlConverter.ConvertMongoToSQL();
 
-           for (int i = 0; i < 45; i++)
-           {
-               string bunnyName = String.Format("IvoBunny" + i);
-               var bunny = new Bunny { BunnyName = bunnyName };
-               bunnies.Insert(bunny);
-           }
-
-           foreach (var item in bunnies.FindAll())
-           {
-               Console.WriteLine(item.BunnyID);
-           }
+           
            // var bunnyVerse = new BunnyverseEntities();
           // var planets = bunnyVerse.Planets.AsQueryable();
           // var ships = bunnyVerse.Ships.AsQueryable();

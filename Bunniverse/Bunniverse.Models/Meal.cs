@@ -11,15 +11,15 @@ namespace Bunniverse.Models
     {
         public Meal()
         {
-            this.MealID = Guid.NewGuid();
+            this.MealId = Guid.NewGuid();
         }
 
         [BsonId]
-        public Guid MealID { get; set; }
+        public Guid MealId { get; set; }
 
-        public Guid BunnyID { get; set; }
+        //public Guid BunnyId { get; set; }
 
-        public Guid FoodID { get; set; }
+       // public Guid FoodId { get; set; }
 
         public double FoodQuantity { get; set; }
 

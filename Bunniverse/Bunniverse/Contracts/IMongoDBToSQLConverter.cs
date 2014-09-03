@@ -8,5 +8,6 @@ namespace Bunniverse.Contracts
 {
     interface IMongoDBToSQLConverter
     {
+        void ConvertMongoToSQL();
     }
 }

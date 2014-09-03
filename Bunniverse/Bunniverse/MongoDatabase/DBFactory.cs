@@ -18,7 +18,7 @@
             var server = client.GetServer();
             var database = server.GetDatabase("bunniverse");
             var bunnies = database.GetCollection<Bunny>("bunnies");
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 string bunnyName = String.Format("IvoBunny" + i);
                 var bunny = new Bunny { BunnyName = bunnyName };
@@ -48,22 +48,32 @@
                 if (bunnyCounter < 200)
                 {
                     viktorShip.Bunnies.Add(bunny);
+                    bunny.Ship = viktorShip;
+                   // bunny.ShipId = viktorShip.ShipId;
                 }
                 else if (bunnyCounter < 400)
                 {
                     nikiShip.Bunnies.Add(bunny);
+                    //bunny.Ship = nikiShip;
+                   // bunny.ShipId = nikiShip.ShipId;
                 }
                 else if (bunnyCounter < 600)
                 {
                     evlogiShip.Bunnies.Add(bunny);
+                  //  bunny.Ship = evlogiShip;
+                   // bunny.ShipId = evlogiShip.ShipId;
                 }
                 else if (bunnyCounter < 800)
                 {
                     ivoShip.Bunnies.Add(bunny);
+                  //  bunny.Ship = ivoShip;
+                   // bunny.ShipId = ivoShip.ShipId;
                 }
                 else if (bunnyCounter < 1000)
                 {
                     donchoShip.Bunnies.Add(bunny);
+                   // bunny.Ship = donchoShip;
+                   // bunny.ShipId = donchoShip.ShipId;
                 }
                 bunnyCounter++;
             }
