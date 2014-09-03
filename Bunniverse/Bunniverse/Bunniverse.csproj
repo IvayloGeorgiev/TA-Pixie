@@ -117,7 +117,6 @@
     <Compile Include="BunniverseEntryPoint.cs" />
     <Compile Include="Contracts\IDBFactory.cs" />
     <Compile Include="Contracts\IMongoDBToSQLConverter.cs" />
-    <Compile Include="Contracts\ISQLJSONConverter.cs" />
     <Compile Include="Excell2007ReportGenerator.cs" />
     <Compile Include="ExcelZipReader.cs" />
     <Compile Include="MongoDatabase\BunniverseFactory.cs" />
@@ -147,7 +146,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Database-Scripts\createDatabaseAndReportTable.sql" />
     <Content Include="x64\SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
