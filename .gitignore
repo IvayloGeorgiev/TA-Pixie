@@ -184,3 +184,29 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+/Bunniverse/packages/Telerik.DataAccess.Core.2014.2.711.1/content/web.config.transform
+/Bunniverse/packages/Telerik.DataAccess.Core.2014.2.711.1/lib/net20/Telerik.OpenAccess.35.Extensions.xml
+/Bunniverse/packages/Telerik.DataAccess.Core.2014.2.711.1/lib/net20/Telerik.OpenAccess.Runtime.dll
+/Bunniverse/packages/Telerik.DataAccess.Core.2014.2.711.1/lib/net20/Telerik.OpenAccess.xml
+/Bunniverse/packages/Telerik.DataAccess.Core.2014.2.711.1/lib/net40/Telerik.OpenAccess.35.Extensions.dll
+/Bunniverse/packages/Telerik.DataAccess.Core.2014.2.711.1/lib/net40/Telerik.OpenAccess.35.Extensions.xml
+/Bunniverse/packages/Telerik.DataAccess.Core.2014.2.711.1/lib/net40/Telerik.OpenAccess.40.Extensions.dll
+/Bunniverse/packages/Telerik.DataAccess.Core.2014.2.711.1/lib/net40/Telerik.OpenAccess.40.Extensions.xml
+/Bunniverse/packages/Telerik.DataAccess.Core.2014.2.711.1/lib/net40/Telerik.OpenAccess.dll
+/Bunniverse/packages/Telerik.DataAccess.Core.2014.2.711.1/lib/net40/Telerik.OpenAccess.Runtime.dll
+/Bunniverse/packages/Telerik.DataAccess.Core.2014.2.711.1/lib/net40/Telerik.OpenAccess.xml
+/Bunniverse/packages/Telerik.DataAccess.Core.2014.2.711.1/readme.txt
+/Bunniverse/packages/Telerik.DataAccess.Fluent.2014.2.711.1/content/OpenAccessNuGet.targets
+/Bunniverse/packages/Telerik.DataAccess.Fluent.2014.2.711.1/readme.txt
+/Bunniverse/packages/Telerik.DataAccess.Fluent.2014.2.711.1/tools/cleanProject.ps1
+/Bunniverse/packages/Telerik.DataAccess.Fluent.2014.2.711.1/tools/enhancer/CecilLicense.txt
+/Bunniverse/packages/Telerik.DataAccess.Fluent.2014.2.711.1/tools/enhancer/enhancer.exe
+/Bunniverse/packages/Telerik.DataAccess.Fluent.2014.2.711.1/tools/enhancer/enhancer.exe.config
+/Bunniverse/packages/Telerik.DataAccess.Fluent.2014.2.711.1/tools/enhancer/Mono.Cecil.dll
+/Bunniverse/packages/Telerik.DataAccess.Fluent.2014.2.711.1/tools/enhancer/Mono.Cecil.Pdb.dll
+/Bunniverse/packages/Telerik.DataAccess.Fluent.2014.2.711.1/tools/enhancer/Telerik.OpenAccess.dll
+/Bunniverse/packages/Telerik.DataAccess.Fluent.2014.2.711.1/tools/enhancer/Telerik.OpenAccess.SDK.dll
+/Bunniverse/packages/Telerik.DataAccess.Fluent.2014.2.711.1/tools/enhancer/venhance.exe
+/Bunniverse/packages/Telerik.DataAccess.Fluent.2014.2.711.1/tools/enhancer/venhance.exe.config
+/Bunniverse/packages/Telerik.DataAccess.Fluent.2014.2.711.1/tools/install.ps1
+/Bunniverse/packages/Telerik.DataAccess.Fluent.2014.2.711.1/tools/uninstall.ps1
