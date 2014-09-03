@@ -19,7 +19,7 @@
             string script = null;
             if (schemaHandler.DatabaseExists())
             {
-                schemaHandler.ExecuteDDLScript(string.Format("TRUNCATE TABLE {0}", "ShipsTravels"));
+                schemaHandler.ExecuteDDLScript(string.Format("TRUNCATE TABLE {0}", "ShipsTravel"));
             }
             else
             {
