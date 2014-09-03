@@ -1,17 +1,15 @@
 ﻿namespace Bunniverse
 {
+    using Bunniverse.Data;
+    using MigraDoc.DocumentObjectModel;
+    using MigraDoc.DocumentObjectModel.Shapes;
+    using MigraDoc.DocumentObjectModel.Tables;
+    using MigraDoc.Rendering;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Globalization;
     using System.Linq;
-
-    using MigraDoc.DocumentObjectModel;
-    using MigraDoc.DocumentObjectModel.Tables;
-    using MigraDoc.Rendering;
-
-    using Bunniverse.Data;
-    using MigraDoc.DocumentObjectModel.Shapes;
 
     internal class AstrogationPDFReport
     {
@@ -36,7 +34,6 @@
             paragraph.Format.Font.Size = 9;
             paragraph.Format.Alignment = ParagraphAlignment.Center;
 
-            //Paragraph frame = document.LastSection.AddParagraph();
 
             // Appending current date and time
             document.LastSection.AddParagraph("Date: " + dateString + "\nTime: " + timeString);
@@ -45,7 +42,6 @@
             image.Top = ShapePosition.Top;
             image.Left = ShapePosition.Left;
             image.WrapFormat.Style = WrapStyle.TopBottom;
-
 
             var headers = new List<string>() { "Planet Name", "Distance", "Time needed", "Food needed", "Reachable" };
             var columnsCount = headers.Count;
@@ -57,29 +53,10 @@
 
             var ctx = new BunniverseEntities();
 
-
             using (ctx)
             {
                 var planets = ctx.Planets.ToList();
-                 var shipsData = ctx.Ships.Select(ship => new
-                 {
-                     ShipID = ship.ShipId,
-                     ShipName = ship.ShipName,
-                     CurrentPlanetName = ship.Planet.PlanetName,
-                     X = ship.Planet.X,
-                     Y = ship.Planet.Y,
-                     Z = ship.Planet.Z,
-                     EnginePower = ship.EnginePower,
-                     BunniesCount = ship.Bunnies.Count(),
-                     FoodPerDay = ctx.Meals.Join(
-                       ship.Bunnies, meal => meal.Bunny.BunnyId, bunny => bunny.BunnyId, (meal, bunny) => meal)
-                       .GroupBy(b => b.Date)
-                       .Select(g => g.Sum(x => x.FoodQuantity))
-                       .FirstOrDefault(),
-                     FoodInCargo = ship.Cargoes.Sum(x => x.FoodQuantity)
-                 });
-
-                var shipsData1 = ctx.Ships.Select(ship => new
+                var shipsData = ctx.Ships.Select(ship => new
                 {
                     ShipID = ship.ShipId,
                     ShipName = ship.ShipName,
@@ -89,22 +66,40 @@
                     Z = ship.Planet.Z,
                     EnginePower = ship.EnginePower,
                     BunniesCount = ship.Bunnies.Count(),
-                    Planets = ctx.Planets.Join(
-                     ctx.Ships, (p => p.PlanetId), s => s.ShipId, (p, s) => new
-                     {
-                         PlanetID = p.PlanetId,
-                         PlanetName = p.PlanetName,
-                         Distance = Math.Pow(((p.X - ship.Planet.X) * (p.X - ship.Planet.X) + (p.Y - ship.Planet.Y) * (p.Y - ship.Planet.Y) + (p.Z - ship.Planet.Z) * (p.Z - ship.Planet.Z)), 0.5)
-                     }
-                    ).OrderByDescending(p=>p.Distance)
-                    ,
                     FoodPerDay = ctx.Meals.Join(
-                       ship.Bunnies, meal => meal.Bunny.BunnyId, bunny => bunny.BunnyId, (meal, bunny) => meal)
-                       .GroupBy(b => b.Date)
-                       .Select(g => g.Sum(x => x.FoodQuantity))
-                       .FirstOrDefault(),
+                      ship.Bunnies, meal => meal.Bunny.BunnyId, bunny => bunny.BunnyId, (meal, bunny) => meal)
+                      .GroupBy(b => b.Date)
+                      .Select(g => g.Sum(x => x.FoodQuantity))
+                      .FirstOrDefault(),
                     FoodInCargo = ship.Cargoes.Sum(x => x.FoodQuantity)
                 });
+
+                //var shipsData1 = ctx.Ships.Select(ship => new
+                //{
+                //    ShipID = ship.ShipId,
+                //    ShipName = ship.ShipName,
+                //    CurrentPlanetName = ship.Planet.PlanetName,
+                //    X = ship.Planet.X,
+                //    Y = ship.Planet.Y,
+                //    Z = ship.Planet.Z,
+                //    EnginePower = ship.EnginePower,
+                //    BunniesCount = ship.Bunnies.Count(),
+                //    Planets = ctx.Planets.Join(
+                //     ctx.Ships, (p => p.PlanetId), s => s.ShipId, (p, s) => new
+                //     {
+                //         PlanetID = p.PlanetId,
+                //         PlanetName = p.PlanetName,
+                //         Distance = Math.Pow(((p.X - ship.Planet.X) * (p.X - ship.Planet.X) + (p.Y - ship.Planet.Y) * (p.Y - ship.Planet.Y) + (p.Z - ship.Planet.Z) * (p.Z - ship.Planet.Z)), 0.5)
+                //     }
+                //    ).OrderByDescending(p=>p.Distance)
+                //    ,
+                //    FoodPerDay = ctx.Meals.Join(
+                //       ship.Bunnies, meal => meal.Bunny.BunnyId, bunny => bunny.BunnyId, (meal, bunny) => meal)
+                //       .GroupBy(b => b.Date)
+                //       .Select(g => g.Sum(x => x.FoodQuantity))
+                //       .FirstOrDefault(),
+                //    FoodInCargo = ship.Cargoes.Sum(x => x.FoodQuantity)
+                //});
 
                 foreach (var shipData in shipsData)
                 {
@@ -115,7 +110,7 @@
                     tableTitle = GetTableTitle(columnsCount, shipData.ShipName.ToUpper()
                         + "\n at " + shipData.CurrentPlanetName
                         + ", crew: " + bunniesCount
-                        + ", food per day: " + shipData.FoodPerDay
+                        + ", food per day: " + shipData.FoodPerDay.ToString("0.00")
                         + ", food in cargo: " + shipData.FoodInCargo);
                     document.LastSection.Add(tableTitle);
                     // Add Table Headers
@@ -130,7 +125,6 @@
                     {
                         var distance = GetDistance(shipData.X, planet.X, shipData.Y, planet.Y, shipData.Z, planet.Z);
                         //var distance = planet.Distance;
-
                         if (distance == 0)
                         {
                             continue;
@@ -141,10 +135,10 @@
                         // Add Tabe Data
                         var rowData = new List<string>()
                                 {
-                                    planet.PlanetName, 
-                                    distance.ToString ("0.00"), 
-                                    timeNeeded.ToString ("0.00"), 
-                                    foodNeeded.ToString("0.00"), 
+                                    planet.PlanetName,
+                                    distance.ToString ("0.00"),
+                                    timeNeeded.ToString ("0.00"),
+                                    foodNeeded.ToString("0.00"),
                                     reachable.ToString("0.00")+"%"
                                 };
                         Row tableRow = GetTableRow(columnsCount, tableData);
@@ -155,7 +149,7 @@
             try
             {
                 var asrtogationReportName = "..\\..\\PDF-Reports\\AstrogationReport_" + date.ToString("dd_MM_yyyy_HH_mm_ss", CultureInfo.InvariantCulture) + ".pdf";
-                Console.WriteLine("New Astrogation report - {0}", asrtogationReportName);
+                Console.WriteLine("Building new Astrogation PDF Report - {0}", asrtogationReportName);
 
                 document.UseCmykColor = true;
 
@@ -320,6 +314,5 @@
         private static readonly Color TableBorder = new Color(81, 125, 192);
         private static readonly Color TableBlue = new Color(235, 240, 249);
         private static readonly Color TableGray = new Color(242, 242, 242);
-
     }
 }

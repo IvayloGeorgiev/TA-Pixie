@@ -1,6 +1,8 @@
 ﻿namespace Bunniverse
 {
     using Bunniverse.Data;
+    using System;
+    using System.Diagnostics;
     using System.IO;
     using System.Linq;
     using System.Xml.Linq;
@@ -10,18 +12,6 @@
         public static void GenerateReports()
         {
             var ctx = new BunniverseEntities();
-
-            // var shipsData = ctx.Ships.Select(ship => new
-            // {
-            //     ShipID = ship.ShipId,
-            //     ShipName = ship.ShipName,
-            //     BunniesCount = ship.Bunnies.Count(),
-            //     FoodPerDay = ctx.Meals.Join(
-            //        ship.Bunnies, meal => meal.Bunny.BunnyId, bunny => bunny.BunnyId, (meal, bunny) => meal)
-            //        .GroupBy(b => b.Date)
-            //        .Select(g => g.Sum(x => x.FoodQuantity)).First(),
-            //     FoodInCargo = ship.Cargoes.Sum(x => x.FoodQuantity)
-            // });
 
             var shipsData = ctx.Ships.Select(ship => new
             {
@@ -37,31 +27,33 @@
                    })
             });
 
-            // var shipsData3 = ctx.Ships.Join(
-            //         ctx.Bunnies, s => s.ShipId, b => b.Ship.ShipId, (s, b) => b.Meals)
-            //     );
             var filePath = @"..\..\XML-Reports\shipsXml.xml";
             FileInfo newFile = new FileInfo(filePath);
             if (newFile.Exists)
             {
-                newFile.Delete();  // ensures we create a new workbook
+                newFile.Delete();  // ensures we create a new xml
                 newFile = new FileInfo(filePath);
             }
-            XElement shipsXml = new XElement("ships");
+
+            Console.WriteLine("Building new XML Report: {0}", filePath);
+
+            var shipsXml = new XElement("ships");
             foreach (var ship in shipsData)
             {
-                var activity = new XElement("activity");
+                var shipXml = new XElement("ship", new XAttribute("name", ship.ShipName), new XAttribute("crew-count", ship.BunniesCount));
                 foreach (var item in ship.Dates)
                 {
+                    var activity = new XElement("activity");
                     activity.Add(new XAttribute("date", item.Date), new XAttribute("food-consumed", item.Quantity));
+                    shipXml.Add(activity);
                 }
-                shipsXml.Add(
-                    new XElement("ship", new XAttribute("name", ship.ShipName), new XAttribute("crew-count", ship.BunniesCount), activity));
+                shipsXml.Add(shipXml);
             }
 
-            System.Console.WriteLine(shipsXml);
-
             shipsXml.Save(filePath);
+
+            // ...and start a viewer.
+            Process.Start(filePath);
         }
     }
 }

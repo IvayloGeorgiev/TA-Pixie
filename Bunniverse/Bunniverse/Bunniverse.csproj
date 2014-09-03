@@ -145,6 +145,7 @@
   <ItemGroup>
     <Folder Include="JSON-Reports\" />
     <Folder Include="PDF-Reports\" />
+    <Folder Include="XML-Reports\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
