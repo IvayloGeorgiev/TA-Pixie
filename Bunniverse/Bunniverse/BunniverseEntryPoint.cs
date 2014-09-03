@@ -21,15 +21,17 @@
     {
         static void Main(string[] args)
         {
-            MySqlDatabase.MySqlCreator.CreateDatabase();
-            Excell2007ReportGenerator.GenerateExcell2007Report();
+           // MySqlDatabase.MySqlCreator.CreateDatabase();
+           // Excell2007ReportGenerator.GenerateExcell2007Report();
 
-           var dbFactory = new BunniverseFactory();
-            dbFactory.GenerateMongoData();
+            //var dbFactory = new BunniverseFactory();
+            //dbFactory.GenerateMongoData();
 
-           IMongoDBToSQLConverter sqlConverter = new MongoDBToSQLConverter();
-            sqlConverter.ConvertMongoToSQL();
+            //IMongoDBToSQLConverter sqlConverter = new MongoDBToSQLConverter();
+            //sqlConverter.ConvertMongoToSQL();
 
+            var zipReader = new ExcelZipReader("..\\..\\..\\Files\\MealsData.zip", "..\\..\\..\\Files\\Temp");
+            zipReader.ReadExcels();
            
            // var bunnyVerse = new BunnyverseEntities();
           // var planets = bunnyVerse.Planets.AsQueryable();
