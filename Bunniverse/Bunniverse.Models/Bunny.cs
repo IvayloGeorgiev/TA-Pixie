@@ -7,14 +7,10 @@
     using System.Collections.Generic;
     public class Bunny
     {
-        public Bunny()
-        {
-            this.BunnyId = Guid.NewGuid();
-        }
         [BsonId]
-        public Guid BunnyId { get; set; }
+        public int BunnyId { get; set; }
         public string BunnyName { get; set; }
-        //public Guid? ShipId { get; set; }
+       // public int ShipId { get; set; }
 
         public virtual Ship Ship { get; set; }
 

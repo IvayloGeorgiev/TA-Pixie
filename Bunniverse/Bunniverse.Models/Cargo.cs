@@ -6,13 +6,8 @@
     using MongoDB.Bson.Serialization.IdGenerators;
     public class Cargo
     {
-        public Cargo()
-        {
-            this.CargoId = Guid.NewGuid();
-        }
-
         [BsonId]
-        public Guid CargoId { get; set; }
+        public int CargoId { get; set; }
 
         public virtual Ship Ship { get; set; }
 

@@ -12,15 +12,15 @@ namespace Bunniverse.Models
         public Visit()
         {
             this.FoodGathereds = new HashSet<FoodGathered>();
-            this.VisitId = Guid.NewGuid();
+           // this.VisitId = Guid.NewGuid();
         }
 
         [BsonId]
-        public Guid VisitId { get; set; }
+        public int VisitId { get; set; }
 
-    //    public Guid PlanetId { get; set; }
+    //    public int PlanetId { get; set; }
 
-      //  public Guid? ShipId { get; set; }
+      //  public int ShipId { get; set; }
 
         public DateTime Date { get; set; }
 
