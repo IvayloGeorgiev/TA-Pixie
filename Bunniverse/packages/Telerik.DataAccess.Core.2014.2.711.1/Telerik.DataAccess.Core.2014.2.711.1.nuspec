@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Telerik.DataAccess.Core</id>
+    <version>2014.2.711.1</version>
+    <title>Telerik.DataAccess.Core</title>
+    <authors>Telerik AD</authors>
+    <owners>Telerik AD</owners>
+    <licenseUrl>http://www.telerik.com/purchase/license-agreement/data-access</licenseUrl>
+    <projectUrl>http://www.telerik.com/data-access</projectUrl>
+    <iconUrl>http://www.telerik.com/sfimages/default-source/productsimages/openaccess-orm/Resources/nuget-telerik-data-access.png</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>The Telerik.DataAccess.Core NuGet package provides the Telerik Data Access runtime assemblies necessary to consume Telerik Data Access persistent objects, without defining any mapping.
+
+If this project contains persistent classes and defines mapping, the Telerik.DataAccess.Fluent NuGet package is required as well.
+
+Telerik Data Access helps defining mapping and executing create, retrieve, update and delete operations for your data access classes and database tables. It allows you to consume stored procedures and functions.</description>
+    <summary>The Telerik.DataAccess.Core NuGet package provides the Telerik Data Access runtime assemblies necessary to work with Telerik Data Access persistent objects.</summary>
+    <releaseNotes>New
+- LINQ: Improved processing of Include/LoadWith hints when the used IQueryable&lt;T&gt; is not a Telerik Data Access type - IQueryable&lt;T&gt; extension methods Include() and LoadWith() now are less strict in checking the target IQueryable and can accept non-Data Access types implementing IQueryable&lt;T&gt;
+- LINQ: Support for joins based on non-column expressions on the left side - Example: 
+from o in context.Orders 
+join od in context.OrderDetails on new {K1 = o.OrderId, K2 = customerIdParam } equals new { K1 = od.OrderId, K2 = od.CustomerId }
+
+Fixed
+- Runtime: GetOriginalValues() causing unexpected concurrency issues for reference navigation properties when Changed Concurrency Control is used
+- Runtime: UpdateAll batch operation can throw exception when source query does not involve parameters - The IQueryable&lt;T&gt; extension method UpdateAll() is not throwing exception any more in the cases where the underlying LINQ query is not using parameters.
+
+NOTE: These Release Notes include only the runtime changes in the particular Telerik Data Access release. For the full list of changes please refer to the Telerik web site ( http://www.telerik.com/support/whats-new/data-access/release-history ).</releaseNotes>
+    <copyright>Copyright (C) 1996-2014 Telerik AD</copyright>
+    <language>en-US</language>
+    <tags>ORM Fluent CodeOnly Entity Mapping DataAccess Database DAL</tags>
+  </metadata>
+</package>

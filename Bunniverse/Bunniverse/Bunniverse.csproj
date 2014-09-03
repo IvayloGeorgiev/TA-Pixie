@@ -120,6 +120,7 @@
     <Compile Include="BunniverseEntryPoint.cs" />
     <Compile Include="Contracts\IDBFactory.cs" />
     <Compile Include="Contracts\IMongoDBToSQLConverter.cs" />
+    <Compile Include="Contracts\IXMLParser.cs" />
     <Compile Include="Excell2007ReportGenerator.cs" />
     <Compile Include="ExcelZipReader.cs" />
     <Compile Include="MongoDatabase\BunniverseFactory.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="MySqlDatabase\MySqlCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="JsonReporter.cs" />
+    <Compile Include="XMLParser\XMLParser.cs" />
     <Compile Include="XMLReport.cs" />
   </ItemGroup>
   <ItemGroup>

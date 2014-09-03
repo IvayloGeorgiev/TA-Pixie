@@ -30,8 +30,11 @@
             IMongoDBToSQLConverter sqlConverter = new MongoDBToSQLConverter();
             sqlConverter.ConvertMongoToSQL();
 
-            var zipReader = new ExcelZipReader("..\\..\\..\\Files\\MealsData.zip", "..\\..\\..\\Files\\Temp");
-            zipReader.ReadExcels();
+            IXMLParser xmlParser = new XMLParser();
+            xmlParser.ParseXML();
+
+            //var zipReader = new ExcelZipReader("..\\..\\..\\Files\\MealsData.zip", "..\\..\\..\\Files\\Temp");
+            //zipReader.ReadExcels();
            
            // var bunnyVerse = new BunnyverseEntities();
           // var planets = bunnyVerse.Planets.AsQueryable();
