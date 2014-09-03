@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8">
 <visits>
-	<visit planet-name="xxxx" date="xxxx" ship-name="xxxx">		
-		<food-type>xxxx(food name)</food-type>
-		<amount>xxxx</amount>
+	<visit planet-name="xxxx" date="yyyy-MM-dd" ship-name="xxxx">		
+		<food-gathered amount="xxx">xxxx(food name)</food-gathered>		
 	</visit>
 </visits>
