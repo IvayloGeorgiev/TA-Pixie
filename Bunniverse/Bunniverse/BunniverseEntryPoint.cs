@@ -47,6 +47,7 @@
           //// ShipJSONConverter.GenerateReports(ships);
           AstrogationPDFReport.GenerateReports();
           XMLReport.GenerateReports();
+          //JsonReporter jsonReport = new JsonReporter("..\\..\\..\\");
         }
     }
 }
