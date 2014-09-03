@@ -48,7 +48,7 @@
                         var absZ = Math.Abs(prevPlanet.Z - orderedPlanets[i].Z);
 
                         var currentDistance = Math.Sqrt((absX * absX) + (absY * absY) + (absZ * absZ));
-
+                        prevPlanet = orderedPlanets[i];
                         totalDistance += (float)currentDistance;
 			        }
 
