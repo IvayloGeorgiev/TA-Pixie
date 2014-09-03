@@ -11,6 +11,7 @@
     using MigraDoc.Rendering;
 
     using Bunniverse.Data;
+    using MigraDoc.DocumentObjectModel.Shapes;
 
     internal class AstrogationPDFReport
     {
@@ -24,6 +25,7 @@
             var date = DateTime.Now;
             var dateString = date.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
             var timeString = date.ToString("HH:mm:ss", CultureInfo.InvariantCulture);
+            var imagePath = "..\\..\\PDF-Reports\\pdfreport-logo.png";
 
             DefineStyles(document);
 
@@ -38,8 +40,14 @@
 
             // Appending current date and time
             document.LastSection.AddParagraph("Date: " + dateString + "\nTime: " + timeString);
+            // Put a logo in the header
+            Image image = section.AddImage(imagePath);
+            image.Top = ShapePosition.Top;
+            image.Left = ShapePosition.Left;
+            image.WrapFormat.Style = WrapStyle.TopBottom;
 
-            var headers = new List<string>() { "Planet Name", "Distance", "Time needed", "Food needed", "Reachable [%]" };
+
+            var headers = new List<string>() { "Planet Name", "Distance", "Time needed", "Food needed", "Reachable" };
             var columnsCount = headers.Count;
 
             var tableTitle = new Table();
@@ -82,7 +90,8 @@
                          PlanetName = p.PlanetName,
                          Distance = Math.Pow(((p.X - ship.Planet.X) * (p.X - ship.Planet.X) + (p.Y - ship.Planet.Y) * (p.Y - ship.Planet.Y) + (p.Z - ship.Planet.Z) * (p.Z - ship.Planet.Z)), 0.5)
                      }
-                    ),
+                    ).OrderByDescending(p=>p.Distance)
+                    ,
                     FoodPerDay = ctx.Meals.Join(
                        ship.Bunnies, meal => meal.Bunny.BunnyId, bunny => bunny.BunnyId, (meal, bunny) => meal)
                        .GroupBy(b => b.Date)
@@ -93,7 +102,6 @@
 
                 foreach (var shipData in shipsData)
                 {
-                    //shipData.FoodPerDay
                     // Adds space between tables
                     document.LastSection.Add(new Paragraph());
                     // Add Table Title
@@ -130,7 +138,7 @@
                                     distance.ToString ("0.00"), 
                                     timeNeeded.ToString ("0.00"), 
                                     foodNeeded.ToString("0.00"), 
-                                    reachable.ToString("0.00")
+                                    reachable.ToString("0.00")+"%"
                                 };
                         Row tableRow = GetTableRow(columnsCount, tableData);
                         AddRowData(rowData, tableRow, false);

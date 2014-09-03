@@ -22,6 +22,8 @@
         static void Main(string[] args)
         {
             MySqlDatabase.MySqlCreator.CreateDatabase();
+            Excell2007ReportGenerator.GenerateExcell2007Report();
+
         //    var dbFactory = new BunniverseFactory();
         //    dbFactory.GenerateMongoData();
 
