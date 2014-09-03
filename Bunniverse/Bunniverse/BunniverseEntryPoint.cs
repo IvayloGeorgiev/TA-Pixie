@@ -21,11 +21,12 @@
     {
         static void Main(string[] args)
         {
-            var dbFactory = new BunniverseFactory();
-            dbFactory.GenerateMongoData();
+            MySqlDatabase.MySqlCreator.CreateDatabase();
+        //    var dbFactory = new BunniverseFactory();
+        //    dbFactory.GenerateMongoData();
 
-            IMongoDBToSQLConverter sqlConverter = new MongoDBToSQLConverter();
-            sqlConverter.ConvertMongoToSQL();
+        //    IMongoDBToSQLConverter sqlConverter = new MongoDBToSQLConverter();
+        //    sqlConverter.ConvertMongoToSQL();
 
            
            // var bunnyVerse = new BunnyverseEntities();

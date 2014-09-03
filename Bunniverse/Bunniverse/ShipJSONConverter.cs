@@ -102,8 +102,7 @@
                         double distanceX = Math.Abs(visit.Planet.X - lastVisited.X);
                         double distanceY = Math.Abs(visit.Planet.Y - lastVisited.Y);
                         double distanceZ = Math.Abs(visit.Planet.Z - lastVisited.Z);
-                        double distanceIn2D = Math.Sqrt(distanceX * distanceX + distanceY * distanceY);
-                        distanceTravelled += Math.Sqrt(distanceIn2D * distanceIn2D + distanceZ * distanceZ);
+                        distanceTravelled = Math.Sqrt(distanceX * distanceX + distanceY * distanceY + distanceZ * distanceZ);                        
                     }
 
                     planetsVisited++;
