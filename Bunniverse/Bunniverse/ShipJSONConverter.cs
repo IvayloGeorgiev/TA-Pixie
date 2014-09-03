@@ -16,9 +16,9 @@
     /// Creates a new ShipJSONConverer for generating JSON reports by passed data objects
     /// </summary>
     [DataContract]
-    public class ShipJSONConverter : ISQLJSONConverter
+    public class ShipJSONConverter
     {
-        [DataMember]
+        [DataMember] 
         string ShipId;
         [DataMember]
         string PlanetsVisited;

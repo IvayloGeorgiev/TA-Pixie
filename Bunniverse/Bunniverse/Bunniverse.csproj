@@ -106,7 +106,6 @@
     <Compile Include="BunniverseEntryPoint.cs" />
     <Compile Include="Contracts\IDBFactory.cs" />
     <Compile Include="Contracts\IMongoDBToSQLConverter.cs" />
-    <Compile Include="Contracts\ISQLJSONConverter.cs" />
     <Compile Include="ExcelZipReader.cs" />
     <Compile Include="MongoDatabase\BunniverseFactory.cs" />
     <Compile Include="MongoDatabase\DBFactory.cs" />
@@ -133,9 +132,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Database-Scripts\createDatabaseAndReportTable.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bunniverse.Data\Bunniverse.Data.csproj">
