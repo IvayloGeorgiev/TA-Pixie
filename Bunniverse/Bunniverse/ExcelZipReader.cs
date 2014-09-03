@@ -60,7 +60,7 @@
                 var bunnies = dbContext.Bunnies.ToList();
                 this.bunnyNameToID = new Dictionary<string, Bunny>();
                 foreach (var bunny in bunnies)
-                {
+                {                   
                     this.bunnyNameToID.Add(bunny.BunnyName, bunny);
                 }
 
@@ -139,18 +139,18 @@
             BunniverseEntities dbContext = new BunniverseEntities();
             using (dbContext)
             {
+                Console.WriteLine("got here.");
                 foreach (DataRow row in data.Rows)
                 {
                     string bunnyName = (string)row[0];
                     string foodName = (string)row[1];
-                    float quantity = float.Parse((string)row[2]);
-
+                    float quantity = float.Parse((string)row[2]);                   
                     // Add the meal to the database.
                     if (this.bunnyNameToID.ContainsKey(bunnyName) && this.foodNameToID.ContainsKey(foodName))
-                    {
+                    {                        
                         var bunny = this.bunnyNameToID[bunnyName];
                         var food = this.foodNameToID[foodName];
-                        var meal = new Meal() { Bunny = bunny, Food = food, Date = mealDate, FoodQuantity = quantity };
+                        var meal = new Meal() { BunnyId = bunny.BunnyId, FoodId = food.FoodId, Date = mealDate, FoodQuantity = quantity };                        
                         dbContext.Meals.Add(meal);
                     }
                 }
