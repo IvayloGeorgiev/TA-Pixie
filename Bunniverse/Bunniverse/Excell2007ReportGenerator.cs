@@ -2,10 +2,12 @@
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System;
+using System.Linq;
 using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
 using System.IO;
+using Bunniverse.Data;
 
 namespace Bunniverse
 {
@@ -29,8 +31,8 @@ namespace Bunniverse
             //MySqlDataAdapter mySqlAdapter = new MySqlDataAdapter(MySQLquery, mySqlConnection);
             //DataTable mySqlDataTable = new DataTable();
             //mySqlAdapter.Fill(mySqlDataTable);
-            
-            Console.WriteLine("Creating file from SQLite Database");
+                                   
+            Console.WriteLine("Creating report from SQLite and MySQL");
 
             FileInfo newFile = new FileInfo( @"..\..\..\reportFromSQLite.xlsx");
             if (newFile.Exists)
@@ -44,47 +46,64 @@ namespace Bunniverse
                 // add a new worksheet to the empty workbook
                 ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Ships");
 
-                worksheet.Cells[1, 1].Value = "Id";
-                worksheet.Cells[1, 2].Value = "ShipName";
-                worksheet.Cells[1, 3].Value = "TotalFuelConsumed";
+                worksheet.Cells[1, 1].Value = "ShipName";
+                worksheet.Cells[1, 2].Value = "Fuel Per 100du";
+               // worksheet.Cells[1, 3].Value = "ShipID in MySQL";
+              //  worksheet.Cells[1, 4].Value = "ShipName in MySQL";
+                worksheet.Cells[1, 3].Value = "Total Distance Traveled";
+                worksheet.Cells[1, 4].Value = "Planets Visited";
+                worksheet.Cells[1, 5].Value = "Total Fuel Used";
+                worksheet.Cells["E2:E6"].Formula = "B2*C2/100";
 
-                using (var range = worksheet.Cells[1, 1, 1, 3])
+                using (var range = worksheet.Cells[1, 1, 1, 5])
                 {
                     range.Style.Font.Bold = true;
                     range.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                    range.Style.Fill.BackgroundColor.SetColor(Color.BlanchedAlmond);
+                    range.Style.Fill.BackgroundColor.SetColor(Color.CadetBlue);
                     range.Style.Font.Color.SetColor(Color.Black);
                 }
 
-            //    worksheet.Cells[2, 1].Value = sqLiteDataTable.Rows[0].ItemArray[0];
-                worksheet.Cells[2, 2].Value = sqLiteDataTable.Rows[0].ItemArray[0];
-                worksheet.Cells[2, 3].Value = sqLiteDataTable.Rows[0].ItemArray[1];
+                using (var ctx = new MySqlEntities())
+                {
+                    var ships = ctx.ShipsTravel.ToList();
 
-            //    worksheet.Cells[3, 1].Value = sqLiteDataTable.Rows[1].ItemArray[0];
-                worksheet.Cells[3, 2].Value = sqLiteDataTable.Rows[1].ItemArray[0];
-                worksheet.Cells[3, 3].Value = sqLiteDataTable.Rows[1].ItemArray[1];
+                    for (int i = 0; i < 5; i++)
+                    {
+                        var ship = new ShipsTravel
+                        {
+                            ID = i + 1,
+                            PlanetsVisited = 5 + i,
+                            ShipName = "Ship" + i,
+                            TotalDistance = 23 * (i+1)
+                        };
+                        ships.Add(ship);
+                    }
+                    ctx.SaveChanges();
+                    
+                    for (int i = 1; i <= sqLiteDataTable.Rows.Count; i++)
+                    {
+                        for (int j = 1; j <= sqLiteDataTable.Columns.Count; j++)
+                        {
+                            var data = sqLiteDataTable.Rows[i - 1].ItemArray[j - 1];
+                            Console.WriteLine(data);
+                            worksheet.Cells[i + 1, j].Value = data;
+                        }
+                    }
 
-            //    worksheet.Cells[4, 1].Value = sqLiteDataTable.Rows[2].ItemArray[0];
-                worksheet.Cells[4, 2].Value = sqLiteDataTable.Rows[2].ItemArray[0];
-                worksheet.Cells[4, 3].Value = sqLiteDataTable.Rows[2].ItemArray[1];
+                    for (int i = 0; i < ships.Count; i++)
+                    {
+                       // var shipID = ships[i].ID;
+                      //  var shipName = ships[i].ShipName;
+                        var distanceTravled = ships[i].TotalDistance;
+                        var planetsVisited = ships[i].PlanetsVisited;
 
-            //    worksheet.Cells[5, 1].Value = sqLiteDataTable.Rows[3].ItemArray[0];
-                worksheet.Cells[5, 2].Value = sqLiteDataTable.Rows[3].ItemArray[0];
-                worksheet.Cells[5, 3].Value = sqLiteDataTable.Rows[3].ItemArray[1];
-
-            //    worksheet.Cells[6, 1].Value = sqLiteDataTable.Rows[4].ItemArray[0];
-                worksheet.Cells[6, 2].Value = sqLiteDataTable.Rows[4].ItemArray[0];
-                worksheet.Cells[6, 3].Value = sqLiteDataTable.Rows[4].ItemArray[1];
-
-                //for (int i = 1; i <= mySqlDataTable.Rows.Count; i++)
-                //{
-                //    for (int j = 1; j <= mySqlDataTable.Columns.Count; j++)
-                //    {
-                //        var data = mySqlDataTable.Rows[i - 1].ItemArray[j - 1];
-                //        Console.WriteLine(data);
-                //        worksheet.Cells[i + 1, j].Value = data;
-                //    }
-                //}
+                      //  worksheet.Cells[i + 2, 3].Value = shipID;
+                     //   worksheet.Cells[i + 2, 4].Value = shipName;
+                        worksheet.Cells[i + 2, 3].Value = distanceTravled;
+                        worksheet.Cells[i + 2, 4].Value = planetsVisited;
+                        
+                    }
+                }
                 package.Save();
             }
         }
