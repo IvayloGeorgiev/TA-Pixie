@@ -11,6 +11,7 @@
     class BunniverseFactory
     {
         public const string connectionString = "mongodb://viktor:qwerty@ds063879.mongolab.com:63879/bunniverse";
+        //private const string connectionString = "mongodb://127.0.0.1";
         public void GenerateMongoData()
         {
 

@@ -70,7 +70,7 @@
                       ship.Bunnies, meal => meal.Bunny.BunnyId, bunny => bunny.BunnyId, (meal, bunny) => meal)
                       .GroupBy(b => b.Date)
                       .Select(g => g.Sum(x => x.FoodQuantity))
-                      .FirstOrDefault(),
+                      .Average(),
                     FoodInCargo = ship.Cargoes.Sum(x => x.FoodQuantity)
                 });
 
