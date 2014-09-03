@@ -13,7 +13,7 @@ namespace Bunniverse
     {
         public static void GenerateExcell2007Report()
         {
-            SQLiteConnection mDbConnection = new SQLiteConnection(@"Data Source=C:\Users\Nina\Documents\GitHub\TA-Pixie\SQLite_BunniverseDB\BunniverseDB.db;Version=3;");
+            SQLiteConnection mDbConnection = new SQLiteConnection(@"Data Source=..\..\..\..\SQLite_BunniverseDB\BunniverseDB.db;Version=3;");
             mDbConnection.Open();
 
             string sqlCommand = "select * from Ships";
