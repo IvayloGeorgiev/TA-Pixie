@@ -210,3 +210,8 @@ FakesAssemblies/
 /Bunniverse/packages/Telerik.DataAccess.Fluent.2014.2.711.1/tools/enhancer/venhance.exe.config
 /Bunniverse/packages/Telerik.DataAccess.Fluent.2014.2.711.1/tools/install.ps1
 /Bunniverse/packages/Telerik.DataAccess.Fluent.2014.2.711.1/tools/uninstall.ps1
+/Bunniverse/packages/ServiceStack.Text.4.0.31/lib/sl5/ServiceStack.Text.xml
+/Bunniverse/packages/ServiceStack.Text.4.0.31/lib/net40/ServiceStack.Text.dll
+/Bunniverse/packages/ServiceStack.Text.4.0.31/lib/net40/ServiceStack.Text.xml
+/Bunniverse/packages/ServiceStack.Text.4.0.31/lib/portable-net45+win8+monotouch+monoandroid/ServiceStack.Text.dll
+/Bunniverse/packages/ServiceStack.Text.4.0.31/lib/sl5/ServiceStack.Text.dll
