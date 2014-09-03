@@ -8,7 +8,7 @@
         public static void CreateDatabase()
         {
             using (var context = new MySqlEntities())
-            {
+            {                
                 var schemaHandler = context.GetSchemaHandler();
                 EnsureDB(schemaHandler);
             }
