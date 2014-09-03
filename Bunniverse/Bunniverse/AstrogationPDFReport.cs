@@ -60,20 +60,26 @@
 
             using (ctx)
             {
-                //var planetsData = ctx.Planets.AsQueryable();
-                // var shipsData = ctx.Ships.Select(ship => new
-                // {
-                //     ShipID = ship.ShipID,
-                //     ShipName = ship.ShipName,
-                //     CurrentPlanetName = ship.Planet.PlanetName,
-                //     X = ship.Planet.X,
-                //     Y = ship.Planet.Y,
-                //     Z = ship.Planet.Z,
-                //     EnginePower = ship.EnginePower,
-                //     BunniesCount = ship.Bunnies.Count(),
-                // });
+                var planets = ctx.Planets.ToList();
+                 var shipsData = ctx.Ships.Select(ship => new
+                 {
+                     ShipID = ship.ShipId,
+                     ShipName = ship.ShipName,
+                     CurrentPlanetName = ship.Planet.PlanetName,
+                     X = ship.Planet.X,
+                     Y = ship.Planet.Y,
+                     Z = ship.Planet.Z,
+                     EnginePower = ship.EnginePower,
+                     BunniesCount = ship.Bunnies.Count(),
+                     FoodPerDay = ctx.Meals.Join(
+                       ship.Bunnies, meal => meal.Bunny.BunnyId, bunny => bunny.BunnyId, (meal, bunny) => meal)
+                       .GroupBy(b => b.Date)
+                       .Select(g => g.Sum(x => x.FoodQuantity))
+                       .FirstOrDefault(),
+                     FoodInCargo = ship.Cargoes.Sum(x => x.FoodQuantity)
+                 });
 
-                var shipsData = ctx.Ships.Select(ship => new
+                var shipsData1 = ctx.Ships.Select(ship => new
                 {
                     ShipID = ship.ShipId,
                     ShipName = ship.ShipName,
@@ -119,10 +125,11 @@
                     tableData = GetDataTable(columnsCount);
                     document.LastSection.Add(tableData);
 
-                    foreach (var planet in shipData.Planets)
+                    foreach (var planet in planets)
+                    //foreach (var planet in shipData.Planets)
                     {
-                        //var distance = GetDistance(shipData.X, planet.X, shipData.Y, planet.Y, shipData.Z, planet.Z);
-                        var distance = planet.Distance;
+                        var distance = GetDistance(shipData.X, planet.X, shipData.Y, planet.Y, shipData.Z, planet.Z);
+                        //var distance = planet.Distance;
 
                         if (distance == 0)
                         {

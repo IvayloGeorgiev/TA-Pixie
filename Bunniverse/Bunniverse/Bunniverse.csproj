@@ -128,6 +128,7 @@
     <Compile Include="MySqlDatabase\MySqlCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShipJSONConverter.cs" />
+    <Compile Include="XMLReport.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

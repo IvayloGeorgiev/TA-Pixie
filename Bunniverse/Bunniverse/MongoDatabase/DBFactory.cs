@@ -84,6 +84,7 @@
             CreateBunnies(ship, client);
             ships.Insert(ship);
         }
+
         public void CreateBunnies(Ship ship, MongoClient client)
         {
             var server = client.GetServer();
@@ -92,7 +93,7 @@
             for (int i = 0; i < 200; i++)
             {
                 string bunnyName = String.Format("Bunny" + i + (200 * (ship.ShipId - 1)));
-                var bunny = new Bunny {BunnyId=i+1000*ship.ShipId,  BunnyName = bunnyName, ShipId = ship.ShipId, Ship = ship };
+                var bunny = new Bunny { BunnyId = i + (200 * (ship.ShipId - 1)), BunnyName = bunnyName, ShipId = ship.ShipId, Ship = ship };
                 bunnies.Insert(bunny);
             }
         }
