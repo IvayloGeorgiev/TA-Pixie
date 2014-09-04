@@ -22,10 +22,10 @@ namespace Bunniverse
 
             var client = new MongoClient(connectionString);
             var server = client.GetServer();
-            var database = server.GetDatabase("bunniverse");
+            var database = server.GetDatabase("bunniverse");                    
             var planets = database.GetCollection<Planet>("planets");
             var ships = database.GetCollection<Ship>("ships");
-            database.DropCollection("visits");
+            database.DropCollection("visits");            
 
             var visits = database.GetCollection<Visit>("visits");
 
@@ -61,6 +61,13 @@ namespace Bunniverse
                 visits.Insert(visit);
                 using (var bunniverseSQL = new BunniverseEntities())
                 {
+                    visit = new Visit()
+                    {
+                        PlanetId = planet.PlanetId,
+                        ShipId = ship.ShipId,
+                        VisitId = idCounter,
+                        Date = date
+                    };
                     bunniverseSQL.Visits.Add(visit);
                     bunniverseSQL.SaveChanges();
                 }

@@ -21,36 +21,24 @@
     {
         static void Main(string[] args)
         {
-           // MySqlDatabase.MySqlCreator.CreateDatabase();
-           // Excell2007ReportGenerator.GenerateExcell2007Report();
+            //var dbFactory = new BunniverseFactory();
+            //dbFactory.GenerateMongoData();
 
-            var dbFactory = new BunniverseFactory();
-            dbFactory.GenerateMongoData();
+            //IMongoDBToSQLConverter sqlConverter = new MongoDBToSQLConverter();
+            //sqlConverter.ConvertMongoToSQL();
 
-            IMongoDBToSQLConverter sqlConverter = new MongoDBToSQLConverter();
-            sqlConverter.ConvertMongoToSQL();
-
-            IXMLParser xmlParser = new XMLParser();
-            xmlParser.ParseXML();
+            //IXMLParser xmlParser = new XMLParser();
+            //xmlParser.ParseXML();
 
             //var zipReader = new ExcelZipReader("..\\..\\..\\Files\\MealsData.zip", "..\\..\\..\\Files\\Temp");
             //zipReader.ReadExcels();
-           
-           // var bunnyVerse = new BunnyverseEntities();
-          // var planets = bunnyVerse.Planets.AsQueryable();
-          // var ships = bunnyVerse.Ships.AsQueryable();
-          // var visits = bunnyVerse.Visits.AsQueryable();
-          // var anonShips = new List<object>();
-          // foreach (var ship in ships)
-          // {
-          //     Console.WriteLine(ship.ShipName);
-          // }
-          // anonShips.Add(new { ShipId = 1, PlanetsVisited = 42, DistanceTravelled = 3.14 });
-          // anonShips.Add(new { ShipId = 2, PlanetsVisited = 9001, DistanceTravelled = 1337.1337 });
-          //// ShipJSONConverter.GenerateReports(ships);
-          AstrogationPDFReport.GenerateReports();
-          XMLReport.GenerateReports();
-          //JsonReporter jsonReport = new JsonReporter("..\\..\\..\\");
+
+            JsonReporter jsonReport = new JsonReporter("..\\..\\..\\");
+            jsonReport.GenerateReport();
+            //AstrogationPDFReport.GenerateReports();
+            //XMLReport.GenerateReports();            
+            // MySqlDatabase.MySqlCreator.CreateDatabase();
+            // Excell2007ReportGenerator.GenerateExcell2007Report();
         }
     }
 }

@@ -37,11 +37,20 @@
                 
                 foreach (var sh in context.Ships)
                 {
+                    foreach (var shh in allShipAllVisits)
+                    {
+                        Console.WriteLine(shh.visit.ShipId);
+                    }
+                    Console.WriteLine(allShipAllVisits.Count());
                     var currentShipVisits = allShipAllVisits.Where(x => x.ship.ShipId == sh.ShipId);
-                    var orderedPlanets = currentShipVisits.Select(x => new {x.planet.X, x.planet.Y, x.planet.Z }).ToArray();
+                    Console.WriteLine(allShipAllVisits.Where(x => x.ship.ShipId == sh.ShipId).FirstOrDefault().ship.ShipId);
+                    Console.WriteLine(currentShipVisits.Count());
+                    Console.WriteLine(sh.ShipId);
+                    var orderedPlanets = currentShipVisits.Select(x => new {x.planet.X, x.planet.Y, x.planet.Z }).ToList();
+                    Console.WriteLine(orderedPlanets.Count);
                     float totalDistance = 0;
                     var prevPlanet = orderedPlanets[0];
-                    for (int i = 1; i < orderedPlanets.Length; i++)
+                    for (int i = 1; i < orderedPlanets.Count; i++)
 			        {
                         var absX = Math.Abs(prevPlanet.X - orderedPlanets[i].X);
                         var absY = Math.Abs(prevPlanet.Y - orderedPlanets[i].Y);
@@ -83,6 +92,7 @@
 
         private void AddToMySql(IEnumerable<ShipsTravel> traveledData)
         {
+            MySqlDatabase.MySqlCreator.CreateDatabase();
             using (var ctx = new MySqlEntities())
             {
                 ctx.Add(traveledData);
