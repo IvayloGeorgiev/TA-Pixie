@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bunniverse.Models", "Bunniv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bunniverse.Data", "Bunniverse.Data\Bunniverse.Data.csproj", "{17FFDCCE-1439-48CF-961E-3137B873DC6F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bunniverse.WebClient", "Bunniverse.WebClient\Bunniverse.WebClient.csproj", "{1DD2A6E4-6A8A-415B-9493-A194C7459BB5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{17FFDCCE-1439-48CF-961E-3137B873DC6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17FFDCCE-1439-48CF-961E-3137B873DC6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17FFDCCE-1439-48CF-961E-3137B873DC6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DD2A6E4-6A8A-415B-9493-A194C7459BB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DD2A6E4-6A8A-415B-9493-A194C7459BB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DD2A6E4-6A8A-415B-9493-A194C7459BB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DD2A6E4-6A8A-415B-9493-A194C7459BB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

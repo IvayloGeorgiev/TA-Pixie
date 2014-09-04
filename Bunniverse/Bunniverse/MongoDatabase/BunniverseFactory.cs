@@ -8,12 +8,14 @@
     using Bunniverse.Contracts;
     using Bunniverse.Models;
     using Bunniverse.MongoDatabase;
-    class BunniverseFactory
+    using System.Text;
+    public class BunniverseFactory
     {
         public const string connectionString = "mongodb://viktor:qwerty@ds063879.mongolab.com:63879/bunniverse";
         //private const string connectionString = "mongodb://127.0.0.1";
-        public void GenerateMongoData()
+        public string GenerateMongoData()
         {
+            StringBuilder result = new StringBuilder();
 
             var client = new MongoClient(connectionString);
             var server = client.GetServer();
@@ -34,8 +36,8 @@
             var planets = database.GetCollection<Planet>("planets");
             foreach (var planet in planets.FindAll())
             {
-                Console.Write("new Planet: " + planet.PlanetName);
-                Console.WriteLine("\n");
+                result.Append("new Planet: " + planet.PlanetName);
+                result.AppendLine("\n");
 
                 DBFactory.CreateShips(planet, client);
             }
@@ -47,6 +49,7 @@
 
             DBFactory.CreateCargos();
 
+            return result.ToString();
             //var cargos = database.GetCollection<Cargo>("cargos");
 
             //foreach (var cargo in cargos.FindAll())
