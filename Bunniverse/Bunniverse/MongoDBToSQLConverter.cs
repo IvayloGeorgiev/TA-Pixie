@@ -13,8 +13,8 @@ namespace Bunniverse
 {
     class MongoDBToSQLConverter : IMongoDBToSQLConverter
     {
-        private const string connectionString = "mongodb://viktor:qwerty@ds063879.mongolab.com:63879/bunniverse";
-        //private const string connectionString = "mongodb://127.0.0.1";
+        //private const string connectionString = "mongodb://viktor:qwerty@ds063879.mongolab.com:63879/bunniverse";
+        private const string connectionString = "mongodb://127.0.0.1";
         public void ConvertMongoToSQL()
         {
             //var connectionString = "mongodb://viktor:qwerty@ds063879.mongolab.com:63879/bunniverse";
