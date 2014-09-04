@@ -12,5 +12,6 @@ namespace Bunniverse.Data
         public string ShipName { get; set; }
         public float TotalDistance { get; set; }
         public int PlanetsVisited { get; set; }
+        public float TotalFoodGathered { get; set; }
     }
 }

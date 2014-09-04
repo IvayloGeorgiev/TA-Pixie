@@ -36,7 +36,8 @@ namespace Bunniverse.Data
                 ShipID = travels.ID,
                 ShipName = travels.ShipName,
                 TotalDistance = travels.TotalDistance,
-                PlanetsVisited = travels.PlanetsVisited
+                PlanetsVisited = travels.PlanetsVisited,
+                TotalFoodGathered = travels.TotalFoodGathered
             }).ToTable("ShipsTravel");
             shipsTravelsMaping.HasProperty(s => s.ID).IsIdentity();
 

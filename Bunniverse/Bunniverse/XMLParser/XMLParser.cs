@@ -25,9 +25,11 @@ namespace Bunniverse
             var database = server.GetDatabase("bunniverse");                    
             var planets = database.GetCollection<Planet>("planets");
             var ships = database.GetCollection<Ship>("ships");
+            var foods = database.GetCollection<Food>("foods");
             database.DropCollection("visits");            
 
             var visits = database.GetCollection<Visit>("visits");
+            List<FoodGathered> gatheredThisTrip = new List<FoodGathered>();
 
             var allVisits = xml.Root.Descendants("visit").Select(c => c);
             int idCounter = 1;
@@ -43,6 +45,14 @@ namespace Bunniverse
                 {
                     string foodName = foodGathered.Value;
                     int foodQuantity = int.Parse(foodGathered.Attribute("quantity").Value);
+                    var gotten = new FoodGathered()
+                    {
+                         FoodId = foods.FindAll().FirstOrDefault(f => f.FoodName == foodName).FoodId,
+                         Quantity = foodQuantity,
+                         VisitID = idCounter
+                    };
+                    gatheredThisTrip.Add(gotten);
+
                 }
 
                 var planet = planets.FindAll().FirstOrDefault(p => p.PlanetName == planetName);
@@ -68,12 +78,23 @@ namespace Bunniverse
                         VisitId = idCounter,
                         Date = date
                     };
-                    bunniverseSQL.Visits.Add(visit);
+                    
+                    bunniverseSQL.Visits.Add(visit);                    
+
                     bunniverseSQL.SaveChanges();
                 }
 
                 idCounter++;
             }
+
+            using (var bunniverseSql = new BunniverseEntities())
+            {
+                foreach (var gotten in gatheredThisTrip)
+                {
+                    bunniverseSql.FoodGathereds.Add(gotten);
+                }
+                bunniverseSql.SaveChanges();
+            }            
         }
     }
 }

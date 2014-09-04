@@ -67,6 +67,7 @@ namespace Bunniverse
                 {
                     var ships = ctx.ShipsTravel.ToList();
 
+                    /*
                     for (int i = 0; i < 5; i++)
                     {
                         var ship = new ShipsTravel
@@ -78,7 +79,7 @@ namespace Bunniverse
                         };
                         ships.Add(ship);
                     }
-                    ctx.SaveChanges();
+                    ctx.SaveChanges();*/
                     
                     for (int i = 1; i <= sqLiteDataTable.Rows.Count; i++)
                     {

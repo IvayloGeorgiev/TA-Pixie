@@ -36,19 +36,20 @@
                     .Join(context.Planets, both => both.visit.Planet.PlanetId, planet => planet.PlanetId, (both, planet) => new {both.ship, planet, both.visit}).OrderBy(x => x.visit.Date);
                 
                 foreach (var sh in context.Ships)
-                {
-                    foreach (var shh in allShipAllVisits)
-                    {
-                        Console.WriteLine(shh.visit.ShipId);
-                    }
-                    Console.WriteLine(allShipAllVisits.Count());
+                {                    
                     var currentShipVisits = allShipAllVisits.Where(x => x.ship.ShipId == sh.ShipId);
-                    Console.WriteLine(allShipAllVisits.Where(x => x.ship.ShipId == sh.ShipId).FirstOrDefault().ship.ShipId);
-                    Console.WriteLine(currentShipVisits.Count());
-                    Console.WriteLine(sh.ShipId);
+                    
                     var orderedPlanets = currentShipVisits.Select(x => new {x.planet.X, x.planet.Y, x.planet.Z }).ToList();
-                    Console.WriteLine(orderedPlanets.Count);
+
+                    float totalFood = 0;
                     float totalDistance = 0;
+                    foreach (var visit in currentShipVisits)
+                    {
+                        foreach (var foodGathered in visit.visit.FoodGathereds)
+                        {
+                            totalFood += (float) foodGathered.Quantity;
+                        }
+                    }
                     var prevPlanet = orderedPlanets[0];
                     for (int i = 1; i < orderedPlanets.Count; i++)
 			        {
@@ -66,7 +67,8 @@
                         ID = sh.ShipId,
                         ShipName = sh.ShipName,
                         PlanetsVisited = currentShipVisits.Count(),
-                        TotalDistance = totalDistance
+                        TotalDistance = totalDistance,
+                        TotalFoodGathered = totalFood
                     };
                     result.Add(shipTravel);
                 }                
@@ -96,7 +98,9 @@
             using (var ctx = new MySqlEntities())
             {
                 ctx.Add(traveledData);
+                ctx.SaveChanges();
             }
+
         }
 
         ///// <summary>
